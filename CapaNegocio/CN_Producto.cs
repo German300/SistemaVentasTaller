@@ -72,6 +72,10 @@ namespace CapaNegocio
             {
                 Mensaje += "El precio de compra no puede ser negativo\n";
             }
+            if (obj.Stock < 0)
+            {
+                Mensaje += "La cantidad no puede ser negativa\n";
+            }
             if (obj.PrecioVenta <= 0)
             {
                 Mensaje += "El precio de venta debe ser mayor a 0\n";

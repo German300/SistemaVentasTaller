@@ -52,6 +52,8 @@
             this.lblganancia = new System.Windows.Forms.Label();
             this.lblestado = new System.Windows.Forms.Label();
             this.cboestado = new System.Windows.Forms.ComboBox();
+            this.lblcantidad = new System.Windows.Forms.Label();
+            this.txtcantidad = new System.Windows.Forms.NumericUpDown();
             this.btnguardar = new FontAwesome.Sharp.IconButton();
             this.btnlimpiar = new FontAwesome.Sharp.IconButton();
             this.btneliminar = new FontAwesome.Sharp.IconButton();
@@ -82,6 +84,7 @@
             this.pnlDetalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtpreciocompra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtprecioventa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtcantidad)).BeginInit();
             this.pnlLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
             this.pnlCabecera.SuspendLayout();
@@ -105,6 +108,8 @@
             this.pnlDetalle.Controls.Add(this.lblprecioventa);
             this.pnlDetalle.Controls.Add(this.txtprecioventa);
             this.pnlDetalle.Controls.Add(this.lblganancia);
+            this.pnlDetalle.Controls.Add(this.lblcantidad);
+            this.pnlDetalle.Controls.Add(this.txtcantidad);
             this.pnlDetalle.Controls.Add(this.lblestado);
             this.pnlDetalle.Controls.Add(this.cboestado);
             this.pnlDetalle.Controls.Add(this.btnguardar);
@@ -280,10 +285,35 @@
             this.lblganancia.TabIndex = 0;
             this.lblganancia.Text = "Ganancia por unidad: —";
             //
+            // lblcantidad
+            // 
+            this.lblcantidad.AutoSize = true;
+            this.lblcantidad.Location = new System.Drawing.Point(22, 394);
+            this.lblcantidad.Name = "lblcantidad";
+            this.lblcantidad.Size = new System.Drawing.Size(119, 20);
+            this.lblcantidad.TabIndex = 0;
+            this.lblcantidad.Text = "Cantidad inicial";
+            // 
+            // txtcantidad
+            // 
+            this.txtcantidad.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtcantidad.Location = new System.Drawing.Point(24, 416);
+            this.txtcantidad.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.txtcantidad.Name = "txtcantidad";
+            this.txtcantidad.Size = new System.Drawing.Size(130, 30);
+            this.txtcantidad.TabIndex = 6;
+            this.txtcantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtcantidad.ThousandsSeparator = true;
+            this.txtcantidad.Enter += new System.EventHandler(this.numerico_Enter);
+            //
             // lblestado
             //
             this.lblestado.AutoSize = true;
-            this.lblestado.Location = new System.Drawing.Point(22, 394);
+            this.lblestado.Location = new System.Drawing.Point(164, 394);
             this.lblestado.Name = "lblestado";
             this.lblestado.Size = new System.Drawing.Size(54, 20);
             this.lblestado.TabIndex = 0;
@@ -293,11 +323,11 @@
             //
             this.cboestado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboestado.FormattingEnabled = true;
-            this.cboestado.Location = new System.Drawing.Point(24, 416);
+            this.cboestado.Location = new System.Drawing.Point(166, 416);
             this.cboestado.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cboestado.Name = "cboestado";
-            this.cboestado.Size = new System.Drawing.Size(272, 28);
-            this.cboestado.TabIndex = 6;
+            this.cboestado.Size = new System.Drawing.Size(130, 28);
+            this.cboestado.TabIndex = 7;
             //
             // btnguardar
             //
@@ -314,7 +344,7 @@
             this.btnguardar.Location = new System.Drawing.Point(24, 462);
             this.btnguardar.Name = "btnguardar";
             this.btnguardar.Size = new System.Drawing.Size(272, 40);
-            this.btnguardar.TabIndex = 7;
+            this.btnguardar.TabIndex = 8;
             this.btnguardar.Text = "Guardar";
             this.btnguardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnguardar.UseVisualStyleBackColor = false;
@@ -334,7 +364,7 @@
             this.btnlimpiar.Location = new System.Drawing.Point(24, 512);
             this.btnlimpiar.Name = "btnlimpiar";
             this.btnlimpiar.Size = new System.Drawing.Size(131, 36);
-            this.btnlimpiar.TabIndex = 8;
+            this.btnlimpiar.TabIndex = 9;
             this.btnlimpiar.Text = "Nuevo";
             this.btnlimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnlimpiar.UseVisualStyleBackColor = false;
@@ -355,7 +385,7 @@
             this.btneliminar.Location = new System.Drawing.Point(165, 512);
             this.btneliminar.Name = "btneliminar";
             this.btneliminar.Size = new System.Drawing.Size(131, 36);
-            this.btneliminar.TabIndex = 9;
+            this.btneliminar.TabIndex = 10;
             this.btneliminar.Text = "Eliminar";
             this.btneliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btneliminar.UseVisualStyleBackColor = false;
@@ -684,6 +714,7 @@
             this.pnlDetalle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtpreciocompra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtprecioventa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtcantidad)).EndInit();
             this.pnlLista.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).EndInit();
             this.pnlCabecera.ResumeLayout(false);
@@ -709,6 +740,8 @@
         private System.Windows.Forms.NumericUpDown txtpreciocompra;
         private System.Windows.Forms.Label lblprecioventa;
         private System.Windows.Forms.NumericUpDown txtprecioventa;
+        private System.Windows.Forms.Label lblcantidad;
+        private System.Windows.Forms.NumericUpDown txtcantidad;
         private System.Windows.Forms.Label lblganancia;
         private System.Windows.Forms.Label lblestado;
         private System.Windows.Forms.ComboBox cboestado;

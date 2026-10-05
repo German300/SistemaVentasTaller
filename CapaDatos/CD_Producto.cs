@@ -85,6 +85,7 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("IdCategoria", obj.oCategoria.IdCategoria);
                     cmd.Parameters.AddWithValue("PrecioCompra", obj.PrecioCompra);
                     cmd.Parameters.AddWithValue("PrecioVenta", obj.PrecioVenta);
+                    cmd.Parameters.AddWithValue("Stock", obj.Stock);
                     cmd.Parameters.AddWithValue("Estado", obj.Estado);
 
 

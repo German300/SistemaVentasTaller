@@ -108,6 +108,7 @@ namespace CapaPresentacion
                 oCategoria = new Categoria() { IdCategoria = Convert.ToInt32(((OpcionCombo)cbocategoria.SelectedItem).Valor) },
                 PrecioCompra = txtpreciocompra.Value,
                 PrecioVenta = txtprecioventa.Value,
+                Stock = Convert.ToInt32(txtcantidad.Value),
                 Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1
             };
 
@@ -156,6 +157,9 @@ namespace CapaPresentacion
             txtproducto_descripcion.Text = "";
             txtpreciocompra.Value = 0;
             txtprecioventa.Value = 0;
+            txtcantidad.Value = 0;
+            txtcantidad.Enabled = true;
+            lblcantidad.Text = "Cantidad inicial";
             if (cbocategoria.Items.Count > 0) cbocategoria.SelectedIndex = 0;
             if (cboestado.Items.Count > 0) cboestado.SelectedIndex = 0;
 
@@ -184,6 +188,11 @@ namespace CapaPresentacion
             txtproducto_descripcion.Text = row.Cells["Descripcion"].Value.ToString();
             txtpreciocompra.Value = Math.Min(Convert.ToDecimal(row.Cells["PrecioCompra"].Value), txtpreciocompra.Maximum);
             txtprecioventa.Value = Math.Min(Convert.ToDecimal(row.Cells["PrecioVenta"].Value), txtprecioventa.Maximum);
+
+            // Después del alta, el stock solo cambia con compras y ventas
+            txtcantidad.Value = Math.Max(Math.Min(Convert.ToDecimal(row.Cells["Stock"].Value), txtcantidad.Maximum), 0);
+            txtcantidad.Enabled = false;
+            lblcantidad.Text = "Stock actual";
 
             foreach (OpcionCombo oc in cbocategoria.Items)
             {
