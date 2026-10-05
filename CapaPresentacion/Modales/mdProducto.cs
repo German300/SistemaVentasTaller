@@ -45,9 +45,9 @@ namespace CapaPresentacion.Modales
         item.Codigo,
         item.Nombre,
         item.oCategoria.Descripcion,
+        item.Stock,
         item.PrecioCompra,
-        item.PrecioVenta,
-        item.Stock
+        item.PrecioVenta
     });
             }
 

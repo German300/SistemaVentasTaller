@@ -63,7 +63,7 @@ namespace CapaPresentacion
                     txtidproducto.Text = modal._Producto.IdProducto.ToString();
                     txtcodproducto.Text = modal._Producto.Codigo;
                     txtproducto.Text = modal._Producto.Nombre;
-                    txtprecioproducto.Text = modal._Producto.PrecioVenta.ToString("0.00");
+                    txtprecioproducto.Text = modal._Producto.PrecioVenta.ToString("0.00", CultureInfo.InvariantCulture);
                     txtstock.Text = modal._Producto.Stock.ToString();
                     txtcantidad.Select();
                 }
@@ -85,7 +85,7 @@ namespace CapaPresentacion
                     txtcodproducto.BackColor = Color.Honeydew;
                     txtidproducto.Text = oProducto.IdProducto.ToString();
                     txtproducto.Text = oProducto.Nombre;
-                    txtprecioproducto.Text = oProducto.PrecioVenta.ToString("0.00");
+                    txtprecioproducto.Text = oProducto.PrecioVenta.ToString("0.00", CultureInfo.InvariantCulture);
                     txtstock.Text = oProducto.Stock.ToString();
                     txtcantidad.Select();
                 }
@@ -112,7 +112,7 @@ namespace CapaPresentacion
                 return;
             }
 
-            if (!decimal.TryParse(txtprecioproducto.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precio))
+            if (!decimal.TryParse(txtprecioproducto.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out precio))
             {
                 if (!decimal.TryParse(txtprecioproducto.Text, out precio))
                 {
@@ -142,9 +142,9 @@ namespace CapaPresentacion
                 dgvdata.Rows.Add(new object[] {
                     txtidproducto.Text,
                     txtproducto.Text,
-                    precio.ToString("0.00"),
+                    precio.ToString("0.00", CultureInfo.InvariantCulture),
                     txtcantidad.Value.ToString(),
-                    (txtcantidad.Value * precio).ToString("0.00")
+                    (txtcantidad.Value * precio).ToString("0.00", CultureInfo.InvariantCulture)
                 });
 
                 calcularTotalPagar();
@@ -164,10 +164,10 @@ namespace CapaPresentacion
             {
                 foreach (DataGridViewRow row in dgvdata.Rows)
                 {
-                    total += Convert.ToDecimal(row.Cells["SubTotal"].Value.ToString());
+                    total += Convert.ToDecimal(row.Cells["SubTotal"].Value.ToString(), CultureInfo.InvariantCulture);
                 }
             }
-            txttotalpagar.Text = total.ToString("0.00");
+            txttotalpagar.Text = total.ToString("0.00", CultureInfo.InvariantCulture);
         }
 
         private void limpiarProducto()
@@ -242,14 +242,14 @@ namespace CapaPresentacion
             }
 
             decimal pagacon;
-            decimal total = Convert.ToDecimal(txttotalpagar.Text);
+            decimal total = Convert.ToDecimal(txttotalpagar.Text, CultureInfo.InvariantCulture);
 
             if (string.IsNullOrWhiteSpace(txtpagocon.Text))
             {
                 txtpagocon.Text = "0";
             }
 
-            if (decimal.TryParse(txtpagocon.Text.Trim(), out pagacon))
+            if (decimal.TryParse(txtpagocon.Text.Trim(), NumberStyles.Number, CultureInfo.InvariantCulture, out pagacon))
             {
                 if (pagacon < total)
                 {
@@ -258,7 +258,7 @@ namespace CapaPresentacion
                 else
                 {
                     decimal cambio = pagacon - total;
-                    txtcambio.Text = cambio.ToString("0.00");
+                    txtcambio.Text = cambio.ToString("0.00", CultureInfo.InvariantCulture);
                 }
             }
         }
@@ -304,11 +304,14 @@ namespace CapaPresentacion
             {
                 detalle_venta.Rows.Add(
                     Convert.ToInt32(row.Cells[0].Value), // IdProducto
-                    Convert.ToDecimal(row.Cells[2].Value), // Precio
+                    Convert.ToDecimal(row.Cells[2].Value, CultureInfo.InvariantCulture), // Precio
                     Convert.ToInt32(row.Cells[3].Value), // Cantidad
-                    Convert.ToDecimal(row.Cells[4].Value)  // Subtotal
+                    Convert.ToDecimal(row.Cells[4].Value, CultureInfo.InvariantCulture)  // Subtotal
                 );
             }
+
+            // Asegura que "Paga con" y "Cambio" tengan valor aunque no se haya presionado Enter
+            calcularcambio();
 
             // 2. Obtener el número correlativo para la venta
             int idcorrelativo = new CN_Venta().ObtenerCorrelativo();

@@ -20,20 +20,8 @@ namespace CapaNegocio
 
         public int Registrar(Producto obj, out string Mensaje)
         {
-            Mensaje = string.Empty;
+            Mensaje = Validar(obj);
 
-            if (obj.Codigo == "")
-            {
-                Mensaje += "El código es obligatorio\n";
-            }
-            if (obj.Nombre == "")
-            {
-                Mensaje += "El nombre es obligatorio\n";
-            }
-            if (obj.Descripcion == "")
-            {
-                Mensaje += "La descripción es obligatoria\n";
-            }
             if (Mensaje != string.Empty)
             {
                 return 0;
@@ -46,19 +34,8 @@ namespace CapaNegocio
 
         public bool Editar(Producto obj, out string Mensaje)
         {
-            Mensaje = string.Empty;
-            if (obj.Codigo == "")
-            {
-                Mensaje += "El código es obligatorio\n";
-            }
-            if (obj.Nombre == "")
-            {
-                Mensaje += "El nombre es obligatorio\n";
-            }
-            if (obj.Descripcion == "")
-            {
-                Mensaje += "La descripción es obligatoria\n";
-            }
+            Mensaje = Validar(obj);
+
             if (Mensaje != string.Empty)
             {
                 return false;
@@ -73,6 +50,34 @@ namespace CapaNegocio
         {
             return objcd_producto.Eliminar(obj, out Mensaje);
         }
+
+        // El código no se valida: lo genera la base de datos al registrar
+        private string Validar(Producto obj)
+        {
+            string Mensaje = string.Empty;
+
+            if (obj.Nombre.Trim() == "")
+            {
+                Mensaje += "El nombre es obligatorio\n";
+            }
+            if (obj.Descripcion.Trim() == "")
+            {
+                Mensaje += "La descripción es obligatoria\n";
+            }
+            if (obj.oCategoria == null || obj.oCategoria.IdCategoria == 0)
+            {
+                Mensaje += "Debe seleccionar una categoría\n";
+            }
+            if (obj.PrecioCompra < 0)
+            {
+                Mensaje += "El precio de compra no puede ser negativo\n";
+            }
+            if (obj.PrecioVenta <= 0)
+            {
+                Mensaje += "El precio de venta debe ser mayor a 0\n";
+            }
+
+            return Mensaje;
+        }
     }
 }
-

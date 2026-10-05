@@ -27,13 +27,38 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnbuscar = new FontAwesome.Sharp.IconButton();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.pnlDetalle = new System.Windows.Forms.Panel();
+            this.lbltitulo = new System.Windows.Forms.Label();
+            this.lblmodo = new System.Windows.Forms.Label();
+            this.lblcodigo = new System.Windows.Forms.Label();
+            this.txtcodigo_producto = new System.Windows.Forms.TextBox();
+            this.lblnombre = new System.Windows.Forms.Label();
+            this.txtnombre_producto = new System.Windows.Forms.TextBox();
+            this.lbldescripcion = new System.Windows.Forms.Label();
+            this.txtproducto_descripcion = new System.Windows.Forms.TextBox();
+            this.lblcategoria = new System.Windows.Forms.Label();
+            this.cbocategoria = new System.Windows.Forms.ComboBox();
+            this.lblpreciocompra = new System.Windows.Forms.Label();
+            this.txtpreciocompra = new System.Windows.Forms.NumericUpDown();
+            this.lblprecioventa = new System.Windows.Forms.Label();
+            this.txtprecioventa = new System.Windows.Forms.NumericUpDown();
+            this.lblganancia = new System.Windows.Forms.Label();
+            this.lblestado = new System.Windows.Forms.Label();
+            this.cboestado = new System.Windows.Forms.ComboBox();
+            this.btnguardar = new FontAwesome.Sharp.IconButton();
+            this.btnlimpiar = new FontAwesome.Sharp.IconButton();
+            this.btneliminar = new FontAwesome.Sharp.IconButton();
+            this.txtid = new System.Windows.Forms.TextBox();
+            this.txtindice = new System.Windows.Forms.TextBox();
+            this.pnlLista = new System.Windows.Forms.Panel();
             this.dgvdata = new System.Windows.Forms.DataGridView();
-            this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,67 +70,353 @@
             this.PrecioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnlimpiarbuscador = new FontAwesome.Sharp.IconButton();
-            this.txtbusqueda = new System.Windows.Forms.TextBox();
-            this.cbobusqueda = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btnbuscar_producto = new FontAwesome.Sharp.IconButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtid = new System.Windows.Forms.TextBox();
-            this.txtindice = new System.Windows.Forms.TextBox();
-            this.btneliminar = new FontAwesome.Sharp.IconButton();
-            this.btnlimpiar = new FontAwesome.Sharp.IconButton();
-            this.btnguardar = new FontAwesome.Sharp.IconButton();
-            this.cboestado = new System.Windows.Forms.ComboBox();
-            this.cbocategoria = new System.Windows.Forms.ComboBox();
-            this.txtproducto_descripcion = new System.Windows.Forms.TextBox();
-            this.txtnombre_producto = new System.Windows.Forms.TextBox();
-            this.txtcodigo_producto = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.pnlSeparador = new System.Windows.Forms.Panel();
+            this.pnlCabecera = new System.Windows.Forms.Panel();
+            this.lbllista = new System.Windows.Forms.Label();
             this.btnexportar = new FontAwesome.Sharp.IconButton();
+            this.lblbuscar = new System.Windows.Forms.Label();
+            this.cbobusqueda = new System.Windows.Forms.ComboBox();
+            this.txtbusqueda = new System.Windows.Forms.TextBox();
+            this.btnbuscar_producto = new FontAwesome.Sharp.IconButton();
+            this.btnlimpiarbuscador = new FontAwesome.Sharp.IconButton();
+            this.pnlDetalle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtpreciocompra)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtprecioventa)).BeginInit();
+            this.pnlLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
+            this.pnlCabecera.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnbuscar
-            // 
-            this.btnbuscar.BackColor = System.Drawing.Color.White;
-            this.btnbuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnbuscar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnbuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnbuscar.ForeColor = System.Drawing.Color.White;
-            this.btnbuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.btnbuscar.IconColor = System.Drawing.Color.Black;
-            this.btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnbuscar.IconSize = 18;
-            this.btnbuscar.Location = new System.Drawing.Point(1166, -41);
-            this.btnbuscar.Name = "btnbuscar";
-            this.btnbuscar.Size = new System.Drawing.Size(74, 34);
-            this.btnbuscar.TabIndex = 53;
-            this.btnbuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnbuscar.UseVisualStyleBackColor = false;
-            // 
+            //
+            // pnlDetalle
+            //
+            this.pnlDetalle.BackColor = System.Drawing.Color.White;
+            this.pnlDetalle.Controls.Add(this.lbltitulo);
+            this.pnlDetalle.Controls.Add(this.lblmodo);
+            this.pnlDetalle.Controls.Add(this.lblcodigo);
+            this.pnlDetalle.Controls.Add(this.txtcodigo_producto);
+            this.pnlDetalle.Controls.Add(this.lblnombre);
+            this.pnlDetalle.Controls.Add(this.txtnombre_producto);
+            this.pnlDetalle.Controls.Add(this.lbldescripcion);
+            this.pnlDetalle.Controls.Add(this.txtproducto_descripcion);
+            this.pnlDetalle.Controls.Add(this.lblcategoria);
+            this.pnlDetalle.Controls.Add(this.cbocategoria);
+            this.pnlDetalle.Controls.Add(this.lblpreciocompra);
+            this.pnlDetalle.Controls.Add(this.txtpreciocompra);
+            this.pnlDetalle.Controls.Add(this.lblprecioventa);
+            this.pnlDetalle.Controls.Add(this.txtprecioventa);
+            this.pnlDetalle.Controls.Add(this.lblganancia);
+            this.pnlDetalle.Controls.Add(this.lblestado);
+            this.pnlDetalle.Controls.Add(this.cboestado);
+            this.pnlDetalle.Controls.Add(this.btnguardar);
+            this.pnlDetalle.Controls.Add(this.btnlimpiar);
+            this.pnlDetalle.Controls.Add(this.btneliminar);
+            this.pnlDetalle.Controls.Add(this.txtid);
+            this.pnlDetalle.Controls.Add(this.txtindice);
+            this.pnlDetalle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlDetalle.Location = new System.Drawing.Point(0, 0);
+            this.pnlDetalle.Name = "pnlDetalle";
+            this.pnlDetalle.Size = new System.Drawing.Size(320, 592);
+            this.pnlDetalle.TabIndex = 0;
+            //
+            // lbltitulo
+            //
+            this.lbltitulo.AutoSize = true;
+            this.lbltitulo.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltitulo.Location = new System.Drawing.Point(20, 14);
+            this.lbltitulo.Name = "lbltitulo";
+            this.lbltitulo.Size = new System.Drawing.Size(200, 32);
+            this.lbltitulo.TabIndex = 0;
+            this.lbltitulo.Text = "Detalle del producto";
+            //
+            // lblmodo
+            //
+            this.lblmodo.AutoSize = true;
+            this.lblmodo.ForeColor = System.Drawing.Color.SeaGreen;
+            this.lblmodo.Location = new System.Drawing.Point(22, 46);
+            this.lblmodo.Name = "lblmodo";
+            this.lblmodo.Size = new System.Drawing.Size(110, 20);
+            this.lblmodo.TabIndex = 0;
+            this.lblmodo.Text = "Nuevo producto";
+            //
+            // lblcodigo
+            //
+            this.lblcodigo.AutoSize = true;
+            this.lblcodigo.Location = new System.Drawing.Point(22, 78);
+            this.lblcodigo.Name = "lblcodigo";
+            this.lblcodigo.Size = new System.Drawing.Size(56, 20);
+            this.lblcodigo.TabIndex = 0;
+            this.lblcodigo.Text = "Código";
+            //
+            // txtcodigo_producto
+            //
+            this.txtcodigo_producto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.txtcodigo_producto.ForeColor = System.Drawing.Color.DimGray;
+            this.txtcodigo_producto.Location = new System.Drawing.Point(24, 100);
+            this.txtcodigo_producto.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtcodigo_producto.Name = "txtcodigo_producto";
+            this.txtcodigo_producto.ReadOnly = true;
+            this.txtcodigo_producto.Size = new System.Drawing.Size(272, 27);
+            this.txtcodigo_producto.TabIndex = 0;
+            this.txtcodigo_producto.TabStop = false;
+            this.txtcodigo_producto.Text = "Se genera al guardar";
+            //
+            // lblnombre
+            //
+            this.lblnombre.AutoSize = true;
+            this.lblnombre.Location = new System.Drawing.Point(22, 136);
+            this.lblnombre.Name = "lblnombre";
+            this.lblnombre.Size = new System.Drawing.Size(73, 20);
+            this.lblnombre.TabIndex = 0;
+            this.lblnombre.Text = "Nombre *";
+            //
+            // txtnombre_producto
+            //
+            this.txtnombre_producto.Location = new System.Drawing.Point(24, 158);
+            this.txtnombre_producto.MaxLength = 50;
+            this.txtnombre_producto.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtnombre_producto.Name = "txtnombre_producto";
+            this.txtnombre_producto.Size = new System.Drawing.Size(272, 27);
+            this.txtnombre_producto.TabIndex = 1;
+            //
+            // lbldescripcion
+            //
+            this.lbldescripcion.AutoSize = true;
+            this.lbldescripcion.Location = new System.Drawing.Point(22, 194);
+            this.lbldescripcion.Name = "lbldescripcion";
+            this.lbldescripcion.Size = new System.Drawing.Size(96, 20);
+            this.lbldescripcion.TabIndex = 0;
+            this.lbldescripcion.Text = "Descripción *";
+            //
+            // txtproducto_descripcion
+            //
+            this.txtproducto_descripcion.Location = new System.Drawing.Point(24, 216);
+            this.txtproducto_descripcion.MaxLength = 50;
+            this.txtproducto_descripcion.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtproducto_descripcion.Name = "txtproducto_descripcion";
+            this.txtproducto_descripcion.Size = new System.Drawing.Size(272, 27);
+            this.txtproducto_descripcion.TabIndex = 2;
+            //
+            // lblcategoria
+            //
+            this.lblcategoria.AutoSize = true;
+            this.lblcategoria.Location = new System.Drawing.Point(22, 252);
+            this.lblcategoria.Name = "lblcategoria";
+            this.lblcategoria.Size = new System.Drawing.Size(82, 20);
+            this.lblcategoria.TabIndex = 0;
+            this.lblcategoria.Text = "Categoría *";
+            //
+            // cbocategoria
+            //
+            this.cbocategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbocategoria.FormattingEnabled = true;
+            this.cbocategoria.Location = new System.Drawing.Point(24, 274);
+            this.cbocategoria.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbocategoria.Name = "cbocategoria";
+            this.cbocategoria.Size = new System.Drawing.Size(272, 28);
+            this.cbocategoria.TabIndex = 3;
+            //
+            // lblpreciocompra
+            //
+            this.lblpreciocompra.AutoSize = true;
+            this.lblpreciocompra.Location = new System.Drawing.Point(22, 312);
+            this.lblpreciocompra.Name = "lblpreciocompra";
+            this.lblpreciocompra.Size = new System.Drawing.Size(107, 20);
+            this.lblpreciocompra.TabIndex = 0;
+            this.lblpreciocompra.Text = "Precio compra";
+            //
+            // txtpreciocompra
+            //
+            this.txtpreciocompra.DecimalPlaces = 2;
+            this.txtpreciocompra.Location = new System.Drawing.Point(24, 334);
+            this.txtpreciocompra.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
+            this.txtpreciocompra.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtpreciocompra.Name = "txtpreciocompra";
+            this.txtpreciocompra.Size = new System.Drawing.Size(130, 27);
+            this.txtpreciocompra.TabIndex = 4;
+            this.txtpreciocompra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtpreciocompra.ThousandsSeparator = true;
+            this.txtpreciocompra.ValueChanged += new System.EventHandler(this.precio_ValueChanged);
+            this.txtpreciocompra.Enter += new System.EventHandler(this.numerico_Enter);
+            //
+            // lblprecioventa
+            //
+            this.lblprecioventa.AutoSize = true;
+            this.lblprecioventa.Location = new System.Drawing.Point(164, 312);
+            this.lblprecioventa.Name = "lblprecioventa";
+            this.lblprecioventa.Size = new System.Drawing.Size(105, 20);
+            this.lblprecioventa.TabIndex = 0;
+            this.lblprecioventa.Text = "Precio venta *";
+            //
+            // txtprecioventa
+            //
+            this.txtprecioventa.DecimalPlaces = 2;
+            this.txtprecioventa.Location = new System.Drawing.Point(166, 334);
+            this.txtprecioventa.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
+            this.txtprecioventa.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtprecioventa.Name = "txtprecioventa";
+            this.txtprecioventa.Size = new System.Drawing.Size(130, 27);
+            this.txtprecioventa.TabIndex = 5;
+            this.txtprecioventa.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtprecioventa.ThousandsSeparator = true;
+            this.txtprecioventa.ValueChanged += new System.EventHandler(this.precio_ValueChanged);
+            this.txtprecioventa.Enter += new System.EventHandler(this.numerico_Enter);
+            //
+            // lblganancia
+            //
+            this.lblganancia.AutoSize = true;
+            this.lblganancia.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.lblganancia.ForeColor = System.Drawing.Color.DimGray;
+            this.lblganancia.Location = new System.Drawing.Point(22, 366);
+            this.lblganancia.Name = "lblganancia";
+            this.lblganancia.Size = new System.Drawing.Size(180, 19);
+            this.lblganancia.TabIndex = 0;
+            this.lblganancia.Text = "Ganancia por unidad: —";
+            //
+            // lblestado
+            //
+            this.lblestado.AutoSize = true;
+            this.lblestado.Location = new System.Drawing.Point(22, 394);
+            this.lblestado.Name = "lblestado";
+            this.lblestado.Size = new System.Drawing.Size(54, 20);
+            this.lblestado.TabIndex = 0;
+            this.lblestado.Text = "Estado";
+            //
+            // cboestado
+            //
+            this.cboestado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboestado.FormattingEnabled = true;
+            this.cboestado.Location = new System.Drawing.Point(24, 416);
+            this.cboestado.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cboestado.Name = "cboestado";
+            this.cboestado.Size = new System.Drawing.Size(272, 28);
+            this.cboestado.TabIndex = 6;
+            //
+            // btnguardar
+            //
+            this.btnguardar.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnguardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnguardar.FlatAppearance.BorderSize = 0;
+            this.btnguardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnguardar.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.btnguardar.ForeColor = System.Drawing.Color.White;
+            this.btnguardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.btnguardar.IconColor = System.Drawing.Color.White;
+            this.btnguardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnguardar.IconSize = 18;
+            this.btnguardar.Location = new System.Drawing.Point(24, 462);
+            this.btnguardar.Name = "btnguardar";
+            this.btnguardar.Size = new System.Drawing.Size(272, 40);
+            this.btnguardar.TabIndex = 7;
+            this.btnguardar.Text = "Guardar";
+            this.btnguardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnguardar.UseVisualStyleBackColor = false;
+            this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
+            //
+            // btnlimpiar
+            //
+            this.btnlimpiar.BackColor = System.Drawing.Color.White;
+            this.btnlimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnlimpiar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnlimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnlimpiar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnlimpiar.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.btnlimpiar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnlimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnlimpiar.IconSize = 16;
+            this.btnlimpiar.Location = new System.Drawing.Point(24, 512);
+            this.btnlimpiar.Name = "btnlimpiar";
+            this.btnlimpiar.Size = new System.Drawing.Size(131, 36);
+            this.btnlimpiar.TabIndex = 8;
+            this.btnlimpiar.Text = "Nuevo";
+            this.btnlimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnlimpiar.UseVisualStyleBackColor = false;
+            this.btnlimpiar.Click += new System.EventHandler(this.btnlimpiar_Click);
+            //
+            // btneliminar
+            //
+            this.btneliminar.BackColor = System.Drawing.Color.Firebrick;
+            this.btneliminar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btneliminar.Enabled = false;
+            this.btneliminar.FlatAppearance.BorderSize = 0;
+            this.btneliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btneliminar.ForeColor = System.Drawing.Color.White;
+            this.btneliminar.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.btneliminar.IconColor = System.Drawing.Color.White;
+            this.btneliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btneliminar.IconSize = 16;
+            this.btneliminar.Location = new System.Drawing.Point(165, 512);
+            this.btneliminar.Name = "btneliminar";
+            this.btneliminar.Size = new System.Drawing.Size(131, 36);
+            this.btneliminar.TabIndex = 9;
+            this.btneliminar.Text = "Eliminar";
+            this.btneliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btneliminar.UseVisualStyleBackColor = false;
+            this.btneliminar.Click += new System.EventHandler(this.btneliminar_Click);
+            //
+            // txtid
+            //
+            this.txtid.Location = new System.Drawing.Point(250, 20);
+            this.txtid.Name = "txtid";
+            this.txtid.Size = new System.Drawing.Size(20, 27);
+            this.txtid.TabIndex = 0;
+            this.txtid.TabStop = false;
+            this.txtid.Text = "0";
+            this.txtid.Visible = false;
+            //
+            // txtindice
+            //
+            this.txtindice.Location = new System.Drawing.Point(274, 20);
+            this.txtindice.Name = "txtindice";
+            this.txtindice.Size = new System.Drawing.Size(20, 27);
+            this.txtindice.TabIndex = 0;
+            this.txtindice.TabStop = false;
+            this.txtindice.Text = "-1";
+            this.txtindice.Visible = false;
+            //
+            // pnlLista
+            //
+            this.pnlLista.Controls.Add(this.dgvdata);
+            this.pnlLista.Controls.Add(this.pnlSeparador);
+            this.pnlLista.Controls.Add(this.pnlCabecera);
+            this.pnlLista.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlLista.Location = new System.Drawing.Point(320, 0);
+            this.pnlLista.Name = "pnlLista";
+            this.pnlLista.Padding = new System.Windows.Forms.Padding(16);
+            this.pnlLista.Size = new System.Drawing.Size(1169, 592);
+            this.pnlLista.TabIndex = 1;
+            //
             // dgvdata
-            // 
+            //
             this.dgvdata.AllowUserToAddRows = false;
+            this.dgvdata.AllowUserToDeleteRows = false;
+            this.dgvdata.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvdata.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvdata.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvdata.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvdata.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvdata.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(239)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(239)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvdata.ColumnHeadersHeight = 38;
+            this.dgvdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvdata.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.btnseleccionar,
             this.Id,
             this.Codigo,
             this.Nombre,
@@ -117,463 +428,297 @@
             this.PrecioVenta,
             this.EstadoValor,
             this.Estado});
-            this.dgvdata.Location = new System.Drawing.Point(283, 146);
+            this.dgvdata.Cursor = System.Windows.Forms.Cursors.Hand;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(231)))), ((int)(((byte)(221)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvdata.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvdata.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvdata.EnableHeadersVisualStyles = false;
+            this.dgvdata.GridColor = System.Drawing.Color.Gainsboro;
+            this.dgvdata.Location = new System.Drawing.Point(16, 90);
             this.dgvdata.MultiSelect = false;
             this.dgvdata.Name = "dgvdata";
             this.dgvdata.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvdata.RowHeadersVisible = false;
             this.dgvdata.RowHeadersWidth = 51;
-            this.dgvdata.RowTemplate.Height = 28;
-            this.dgvdata.Size = new System.Drawing.Size(1144, 434);
-            this.dgvdata.TabIndex = 47;
-            this.dgvdata.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellContentClick);
-            this.dgvdata.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvdata_CellPainting);
-            // 
-            // btnseleccionar
-            // 
-            this.btnseleccionar.HeaderText = "";
-            this.btnseleccionar.MinimumWidth = 6;
-            this.btnseleccionar.Name = "btnseleccionar";
-            this.btnseleccionar.ReadOnly = true;
-            this.btnseleccionar.Width = 30;
-            // 
+            this.dgvdata.RowTemplate.Height = 32;
+            this.dgvdata.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvdata.Size = new System.Drawing.Size(1137, 486);
+            this.dgvdata.TabIndex = 2;
+            this.dgvdata.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellClick);
+            this.dgvdata.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvdata_CellFormatting);
+            //
             // Id
-            // 
+            //
             this.Id.HeaderText = "Id";
             this.Id.MinimumWidth = 6;
             this.Id.Name = "Id";
             this.Id.ReadOnly = true;
             this.Id.Visible = false;
-            this.Id.Width = 125;
-            // 
+            //
             // Codigo
-            // 
-            this.Codigo.HeaderText = "Codigo";
+            //
+            this.Codigo.FillWeight = 70F;
+            this.Codigo.HeaderText = "Código";
             this.Codigo.MinimumWidth = 6;
             this.Codigo.Name = "Codigo";
             this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 150;
-            // 
+            //
             // Nombre
-            // 
+            //
+            this.Nombre.FillWeight = 150F;
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 180;
-            // 
+            //
             // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripcion";
+            //
+            this.Descripcion.FillWeight = 160F;
+            this.Descripcion.HeaderText = "Descripción";
             this.Descripcion.MinimumWidth = 6;
             this.Descripcion.Name = "Descripcion";
             this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 150;
-            // 
+            //
             // IdCategoria
-            // 
+            //
             this.IdCategoria.HeaderText = "IdCategoria";
             this.IdCategoria.MinimumWidth = 6;
             this.IdCategoria.Name = "IdCategoria";
             this.IdCategoria.ReadOnly = true;
             this.IdCategoria.Visible = false;
-            this.IdCategoria.Width = 125;
-            // 
+            //
             // Categoria
-            // 
-            this.Categoria.HeaderText = "Categoria";
+            //
+            this.Categoria.HeaderText = "Categoría";
             this.Categoria.MinimumWidth = 6;
             this.Categoria.Name = "Categoria";
             this.Categoria.ReadOnly = true;
-            this.Categoria.Width = 125;
-            // 
+            //
             // Stock
-            // 
+            //
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Stock.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Stock.FillWeight = 55F;
             this.Stock.HeaderText = "Stock";
             this.Stock.MinimumWidth = 6;
             this.Stock.Name = "Stock";
             this.Stock.ReadOnly = true;
-            this.Stock.Width = 125;
-            // 
+            //
             // PrecioCompra
-            // 
-            this.PrecioCompra.HeaderText = "Precio Compra";
+            //
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            this.PrecioCompra.DefaultCellStyle = dataGridViewCellStyle5;
+            this.PrecioCompra.FillWeight = 85F;
+            this.PrecioCompra.HeaderText = "Precio compra";
             this.PrecioCompra.MinimumWidth = 6;
             this.PrecioCompra.Name = "PrecioCompra";
             this.PrecioCompra.ReadOnly = true;
-            this.PrecioCompra.Width = 125;
-            // 
+            //
             // PrecioVenta
-            // 
-            this.PrecioVenta.HeaderText = "Precio Venta";
+            //
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N2";
+            this.PrecioVenta.DefaultCellStyle = dataGridViewCellStyle6;
+            this.PrecioVenta.FillWeight = 85F;
+            this.PrecioVenta.HeaderText = "Precio venta";
             this.PrecioVenta.MinimumWidth = 6;
             this.PrecioVenta.Name = "PrecioVenta";
             this.PrecioVenta.ReadOnly = true;
-            this.PrecioVenta.Width = 125;
-            // 
+            //
             // EstadoValor
-            // 
+            //
             this.EstadoValor.HeaderText = "EstadoValor";
             this.EstadoValor.MinimumWidth = 6;
             this.EstadoValor.Name = "EstadoValor";
             this.EstadoValor.ReadOnly = true;
             this.EstadoValor.Visible = false;
-            this.EstadoValor.Width = 125;
-            // 
+            //
             // Estado
-            // 
+            //
+            this.Estado.FillWeight = 70F;
             this.Estado.HeaderText = "Estado";
             this.Estado.MinimumWidth = 6;
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
-            this.Estado.Width = 125;
-            // 
-            // btnlimpiarbuscador
-            // 
-            this.btnlimpiarbuscador.BackColor = System.Drawing.Color.White;
-            this.btnlimpiarbuscador.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnlimpiarbuscador.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnlimpiarbuscador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnlimpiarbuscador.ForeColor = System.Drawing.Color.White;
-            this.btnlimpiarbuscador.IconChar = FontAwesome.Sharp.IconChar.Broom;
-            this.btnlimpiarbuscador.IconColor = System.Drawing.Color.Black;
-            this.btnlimpiarbuscador.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnlimpiarbuscador.IconSize = 18;
-            this.btnlimpiarbuscador.Location = new System.Drawing.Point(1262, 61);
-            this.btnlimpiarbuscador.Name = "btnlimpiarbuscador";
-            this.btnlimpiarbuscador.Size = new System.Drawing.Size(76, 34);
-            this.btnlimpiarbuscador.TabIndex = 54;
-            this.btnlimpiarbuscador.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnlimpiarbuscador.UseVisualStyleBackColor = false;
-            this.btnlimpiarbuscador.Click += new System.EventHandler(this.btnlimpiarbuscador_Click);
-            // 
-            // txtbusqueda
-            // 
-            this.txtbusqueda.Location = new System.Drawing.Point(1010, 69);
-            this.txtbusqueda.Name = "txtbusqueda";
-            this.txtbusqueda.Size = new System.Drawing.Size(157, 22);
-            this.txtbusqueda.TabIndex = 52;
-            // 
-            // cbobusqueda
-            // 
-            this.cbobusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbobusqueda.FormattingEnabled = true;
-            this.cbobusqueda.Location = new System.Drawing.Point(829, 67);
-            this.cbobusqueda.Name = "cbobusqueda";
-            this.cbobusqueda.Size = new System.Drawing.Size(157, 24);
-            this.cbobusqueda.TabIndex = 51;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(724, 73);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(75, 16);
-            this.label11.TabIndex = 50;
-            this.label11.Text = "Buscar por:";
-            // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.Color.White;
-            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(283, 23);
-            this.label10.Name = "label10";
-            this.label10.Padding = new System.Windows.Forms.Padding(3, 6, 0, 0);
-            this.label10.Size = new System.Drawing.Size(1089, 98);
-            this.label10.TabIndex = 48;
-            this.label10.Text = "Lista De Productos:";
-            // 
-            // btnbuscar_producto
-            // 
-            this.btnbuscar_producto.BackColor = System.Drawing.Color.White;
-            this.btnbuscar_producto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnbuscar_producto.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnbuscar_producto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnbuscar_producto.ForeColor = System.Drawing.Color.White;
-            this.btnbuscar_producto.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.btnbuscar_producto.IconColor = System.Drawing.Color.Black;
-            this.btnbuscar_producto.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnbuscar_producto.IconSize = 18;
-            this.btnbuscar_producto.Location = new System.Drawing.Point(1182, 61);
-            this.btnbuscar_producto.Name = "btnbuscar_producto";
-            this.btnbuscar_producto.Size = new System.Drawing.Size(74, 34);
-            this.btnbuscar_producto.TabIndex = 56;
-            this.btnbuscar_producto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnbuscar_producto.UseVisualStyleBackColor = false;
-            this.btnbuscar_producto.Click += new System.EventHandler(this.btnbuscar_producto_Click);
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(264, 592);
-            this.label1.TabIndex = 57;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(29, 303);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 16);
-            this.label5.TabIndex = 93;
-            this.label5.Text = "Estado";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(28, 247);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 16);
-            this.label4.TabIndex = 92;
-            this.label4.Text = "Categoria";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(32, 184);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 16);
-            this.label3.TabIndex = 91;
-            this.label3.Text = "Descripcion";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(33, 131);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 16);
-            this.label2.TabIndex = 90;
-            this.label2.Text = "Nombre";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(34, 74);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 16);
-            this.label7.TabIndex = 89;
-            this.label7.Text = "Codigo:";
-            this.label7.UseMnemonic = false;
-            // 
-            // txtid
-            // 
-            this.txtid.Location = new System.Drawing.Point(205, 70);
-            this.txtid.Name = "txtid";
-            this.txtid.Size = new System.Drawing.Size(28, 22);
-            this.txtid.TabIndex = 87;
-            this.txtid.Text = "0";
-            this.txtid.Visible = false;
-            // 
-            // txtindice
-            // 
-            this.txtindice.Location = new System.Drawing.Point(168, 70);
-            this.txtindice.Name = "txtindice";
-            this.txtindice.Size = new System.Drawing.Size(28, 22);
-            this.txtindice.TabIndex = 88;
-            this.txtindice.Text = "-1";
-            this.txtindice.Visible = false;
-            // 
-            // btneliminar
-            // 
-            this.btneliminar.BackColor = System.Drawing.Color.Firebrick;
-            this.btneliminar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btneliminar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btneliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btneliminar.ForeColor = System.Drawing.Color.White;
-            this.btneliminar.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            this.btneliminar.IconColor = System.Drawing.Color.White;
-            this.btneliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btneliminar.IconSize = 16;
-            this.btneliminar.Location = new System.Drawing.Point(25, 464);
-            this.btneliminar.Name = "btneliminar";
-            this.btneliminar.Size = new System.Drawing.Size(175, 34);
-            this.btneliminar.TabIndex = 86;
-            this.btneliminar.Text = "Eliminar";
-            this.btneliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btneliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btneliminar.UseVisualStyleBackColor = false;
-            this.btneliminar.Click += new System.EventHandler(this.btneliminar_Click);
-            // 
-            // btnlimpiar
-            // 
-            this.btnlimpiar.BackColor = System.Drawing.Color.RoyalBlue;
-            this.btnlimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnlimpiar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnlimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnlimpiar.ForeColor = System.Drawing.Color.White;
-            this.btnlimpiar.IconChar = FontAwesome.Sharp.IconChar.Broom;
-            this.btnlimpiar.IconColor = System.Drawing.Color.White;
-            this.btnlimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnlimpiar.IconSize = 16;
-            this.btnlimpiar.Location = new System.Drawing.Point(25, 413);
-            this.btnlimpiar.Name = "btnlimpiar";
-            this.btnlimpiar.Size = new System.Drawing.Size(175, 34);
-            this.btnlimpiar.TabIndex = 85;
-            this.btnlimpiar.Text = "Limpiar";
-            this.btnlimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnlimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnlimpiar.UseVisualStyleBackColor = false;
-            this.btnlimpiar.Click += new System.EventHandler(this.btnlimpiar_Click);
-            // 
-            // btnguardar
-            // 
-            this.btnguardar.BackColor = System.Drawing.Color.ForestGreen;
-            this.btnguardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnguardar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnguardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnguardar.ForeColor = System.Drawing.Color.White;
-            this.btnguardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.btnguardar.IconColor = System.Drawing.Color.White;
-            this.btnguardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnguardar.IconSize = 16;
-            this.btnguardar.Location = new System.Drawing.Point(27, 364);
-            this.btnguardar.Name = "btnguardar";
-            this.btnguardar.Size = new System.Drawing.Size(173, 34);
-            this.btnguardar.TabIndex = 84;
-            this.btnguardar.Text = "Guardar";
-            this.btnguardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnguardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnguardar.UseVisualStyleBackColor = false;
-            this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
-            // 
-            // cboestado
-            // 
-            this.cboestado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboestado.FormattingEnabled = true;
-            this.cboestado.Location = new System.Drawing.Point(25, 325);
-            this.cboestado.Name = "cboestado";
-            this.cboestado.Size = new System.Drawing.Size(207, 24);
-            this.cboestado.TabIndex = 83;
-            // 
-            // cbocategoria
-            // 
-            this.cbocategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbocategoria.FormattingEnabled = true;
-            this.cbocategoria.Location = new System.Drawing.Point(27, 269);
-            this.cbocategoria.Name = "cbocategoria";
-            this.cbocategoria.Size = new System.Drawing.Size(207, 24);
-            this.cbocategoria.TabIndex = 82;
-            // 
-            // txtproducto_descripcion
-            // 
-            this.txtproducto_descripcion.Location = new System.Drawing.Point(28, 206);
-            this.txtproducto_descripcion.Name = "txtproducto_descripcion";
-            this.txtproducto_descripcion.Size = new System.Drawing.Size(207, 22);
-            this.txtproducto_descripcion.TabIndex = 81;
-            // 
-            // txtnombre_producto
-            // 
-            this.txtnombre_producto.Location = new System.Drawing.Point(28, 153);
-            this.txtnombre_producto.Name = "txtnombre_producto";
-            this.txtnombre_producto.Size = new System.Drawing.Size(207, 22);
-            this.txtnombre_producto.TabIndex = 80;
-            // 
-            // txtcodigo_producto
-            // 
-            this.txtcodigo_producto.Location = new System.Drawing.Point(30, 99);
-            this.txtcodigo_producto.Name = "txtcodigo_producto";
-            this.txtcodigo_producto.Size = new System.Drawing.Size(205, 22);
-            this.txtcodigo_producto.TabIndex = 79;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(32, 23);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(207, 29);
-            this.label6.TabIndex = 94;
-            this.label6.Text = "Detalle Producto:";
-            // 
+            //
+            // pnlSeparador
+            //
+            this.pnlSeparador.BackColor = System.Drawing.Color.Transparent;
+            this.pnlSeparador.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSeparador.Location = new System.Drawing.Point(16, 78);
+            this.pnlSeparador.Name = "pnlSeparador";
+            this.pnlSeparador.Size = new System.Drawing.Size(1137, 12);
+            this.pnlSeparador.TabIndex = 1;
+            //
+            // pnlCabecera
+            //
+            this.pnlCabecera.BackColor = System.Drawing.Color.White;
+            this.pnlCabecera.Controls.Add(this.lbllista);
+            this.pnlCabecera.Controls.Add(this.btnexportar);
+            this.pnlCabecera.Controls.Add(this.lblbuscar);
+            this.pnlCabecera.Controls.Add(this.cbobusqueda);
+            this.pnlCabecera.Controls.Add(this.txtbusqueda);
+            this.pnlCabecera.Controls.Add(this.btnbuscar_producto);
+            this.pnlCabecera.Controls.Add(this.btnlimpiarbuscador);
+            this.pnlCabecera.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlCabecera.Location = new System.Drawing.Point(16, 16);
+            this.pnlCabecera.Name = "pnlCabecera";
+            this.pnlCabecera.Size = new System.Drawing.Size(1137, 62);
+            this.pnlCabecera.TabIndex = 0;
+            //
+            // lbllista
+            //
+            this.lbllista.AutoSize = true;
+            this.lbllista.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold);
+            this.lbllista.Location = new System.Drawing.Point(14, 14);
+            this.lbllista.Name = "lbllista";
+            this.lbllista.Size = new System.Drawing.Size(190, 32);
+            this.lbllista.TabIndex = 0;
+            this.lbllista.Text = "Lista de productos";
+            //
             // btnexportar
-            // 
+            //
             this.btnexportar.BackColor = System.Drawing.Color.White;
             this.btnexportar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnexportar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnexportar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnexportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnexportar.ForeColor = System.Drawing.Color.Black;
             this.btnexportar.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
             this.btnexportar.IconColor = System.Drawing.Color.Green;
             this.btnexportar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnexportar.IconSize = 18;
-            this.btnexportar.Location = new System.Drawing.Point(295, 74);
+            this.btnexportar.Location = new System.Drawing.Point(226, 14);
             this.btnexportar.Name = "btnexportar";
-            this.btnexportar.Size = new System.Drawing.Size(176, 30);
-            this.btnexportar.TabIndex = 95;
-            this.btnexportar.Text = "Descargar Excel";
-            this.btnexportar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnexportar.Size = new System.Drawing.Size(150, 34);
+            this.btnexportar.TabIndex = 0;
+            this.btnexportar.Text = "Exportar Excel";
             this.btnexportar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnexportar.UseVisualStyleBackColor = false;
             this.btnexportar.Click += new System.EventHandler(this.btnexportar_Click);
-            // 
+            //
+            // lblbuscar
+            //
+            this.lblbuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblbuscar.AutoSize = true;
+            this.lblbuscar.Location = new System.Drawing.Point(626, 21);
+            this.lblbuscar.Name = "lblbuscar";
+            this.lblbuscar.Size = new System.Drawing.Size(81, 20);
+            this.lblbuscar.TabIndex = 0;
+            this.lblbuscar.Text = "Buscar por:";
+            //
+            // cbobusqueda
+            //
+            this.cbobusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbobusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbobusqueda.FormattingEnabled = true;
+            this.cbobusqueda.Location = new System.Drawing.Point(712, 17);
+            this.cbobusqueda.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbobusqueda.Name = "cbobusqueda";
+            this.cbobusqueda.Size = new System.Drawing.Size(140, 28);
+            this.cbobusqueda.TabIndex = 1;
+            //
+            // txtbusqueda
+            //
+            this.txtbusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtbusqueda.Location = new System.Drawing.Point(860, 18);
+            this.txtbusqueda.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtbusqueda.Name = "txtbusqueda";
+            this.txtbusqueda.Size = new System.Drawing.Size(180, 27);
+            this.txtbusqueda.TabIndex = 2;
+            this.txtbusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbusqueda_KeyDown);
+            //
+            // btnbuscar_producto
+            //
+            this.btnbuscar_producto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnbuscar_producto.BackColor = System.Drawing.Color.White;
+            this.btnbuscar_producto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnbuscar_producto.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnbuscar_producto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnbuscar_producto.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnbuscar_producto.IconColor = System.Drawing.Color.Black;
+            this.btnbuscar_producto.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnbuscar_producto.IconSize = 18;
+            this.btnbuscar_producto.Location = new System.Drawing.Point(1046, 16);
+            this.btnbuscar_producto.Name = "btnbuscar_producto";
+            this.btnbuscar_producto.Size = new System.Drawing.Size(38, 30);
+            this.btnbuscar_producto.TabIndex = 3;
+            this.btnbuscar_producto.UseVisualStyleBackColor = false;
+            this.btnbuscar_producto.Click += new System.EventHandler(this.btnbuscar_producto_Click);
+            //
+            // btnlimpiarbuscador
+            //
+            this.btnlimpiarbuscador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnlimpiarbuscador.BackColor = System.Drawing.Color.White;
+            this.btnlimpiarbuscador.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnlimpiarbuscador.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnlimpiarbuscador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnlimpiarbuscador.IconChar = FontAwesome.Sharp.IconChar.Broom;
+            this.btnlimpiarbuscador.IconColor = System.Drawing.Color.Black;
+            this.btnlimpiarbuscador.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnlimpiarbuscador.IconSize = 18;
+            this.btnlimpiarbuscador.Location = new System.Drawing.Point(1088, 16);
+            this.btnlimpiarbuscador.Name = "btnlimpiarbuscador";
+            this.btnlimpiarbuscador.Size = new System.Drawing.Size(38, 30);
+            this.btnlimpiarbuscador.TabIndex = 4;
+            this.btnlimpiarbuscador.UseVisualStyleBackColor = false;
+            this.btnlimpiarbuscador.Click += new System.EventHandler(this.btnlimpiarbuscador_Click);
+            //
             // frmProducto
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            //
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1489, 592);
-            this.Controls.Add(this.btnexportar);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtid);
-            this.Controls.Add(this.txtindice);
-            this.Controls.Add(this.btneliminar);
-            this.Controls.Add(this.btnlimpiar);
-            this.Controls.Add(this.btnguardar);
-            this.Controls.Add(this.cboestado);
-            this.Controls.Add(this.cbocategoria);
-            this.Controls.Add(this.txtproducto_descripcion);
-            this.Controls.Add(this.txtnombre_producto);
-            this.Controls.Add(this.txtcodigo_producto);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnbuscar_producto);
-            this.Controls.Add(this.btnbuscar);
-            this.Controls.Add(this.dgvdata);
-            this.Controls.Add(this.btnlimpiarbuscador);
-            this.Controls.Add(this.txtbusqueda);
-            this.Controls.Add(this.cbobusqueda);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.pnlLista);
+            this.Controls.Add(this.pnlDetalle);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Name = "frmProducto";
             this.Text = "frmProducto";
             this.Load += new System.EventHandler(this.frmProducto_Load);
+            this.pnlDetalle.ResumeLayout(false);
+            this.pnlDetalle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtpreciocompra)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtprecioventa)).EndInit();
+            this.pnlLista.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).EndInit();
+            this.pnlCabecera.ResumeLayout(false);
+            this.pnlCabecera.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private FontAwesome.Sharp.IconButton btnbuscar;
+        private System.Windows.Forms.Panel pnlDetalle;
+        private System.Windows.Forms.Label lbltitulo;
+        private System.Windows.Forms.Label lblmodo;
+        private System.Windows.Forms.Label lblcodigo;
+        private System.Windows.Forms.TextBox txtcodigo_producto;
+        private System.Windows.Forms.Label lblnombre;
+        private System.Windows.Forms.TextBox txtnombre_producto;
+        private System.Windows.Forms.Label lbldescripcion;
+        private System.Windows.Forms.TextBox txtproducto_descripcion;
+        private System.Windows.Forms.Label lblcategoria;
+        private System.Windows.Forms.ComboBox cbocategoria;
+        private System.Windows.Forms.Label lblpreciocompra;
+        private System.Windows.Forms.NumericUpDown txtpreciocompra;
+        private System.Windows.Forms.Label lblprecioventa;
+        private System.Windows.Forms.NumericUpDown txtprecioventa;
+        private System.Windows.Forms.Label lblganancia;
+        private System.Windows.Forms.Label lblestado;
+        private System.Windows.Forms.ComboBox cboestado;
+        private FontAwesome.Sharp.IconButton btnguardar;
+        private FontAwesome.Sharp.IconButton btnlimpiar;
+        private FontAwesome.Sharp.IconButton btneliminar;
+        private System.Windows.Forms.TextBox txtid;
+        private System.Windows.Forms.TextBox txtindice;
+        private System.Windows.Forms.Panel pnlLista;
         private System.Windows.Forms.DataGridView dgvdata;
-        private FontAwesome.Sharp.IconButton btnlimpiarbuscador;
-        private System.Windows.Forms.TextBox txtbusqueda;
-        private System.Windows.Forms.ComboBox cbobusqueda;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DataGridViewButtonColumn btnseleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
@@ -585,24 +730,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private FontAwesome.Sharp.IconButton btnbuscar_producto;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtid;
-        private System.Windows.Forms.TextBox txtindice;
-        private FontAwesome.Sharp.IconButton btneliminar;
-        private FontAwesome.Sharp.IconButton btnlimpiar;
-        private FontAwesome.Sharp.IconButton btnguardar;
-        private System.Windows.Forms.ComboBox cboestado;
-        private System.Windows.Forms.ComboBox cbocategoria;
-        private System.Windows.Forms.TextBox txtproducto_descripcion;
-        private System.Windows.Forms.TextBox txtnombre_producto;
-        private System.Windows.Forms.TextBox txtcodigo_producto;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel pnlSeparador;
+        private System.Windows.Forms.Panel pnlCabecera;
+        private System.Windows.Forms.Label lbllista;
         private FontAwesome.Sharp.IconButton btnexportar;
+        private System.Windows.Forms.Label lblbuscar;
+        private System.Windows.Forms.ComboBox cbobusqueda;
+        private System.Windows.Forms.TextBox txtbusqueda;
+        private FontAwesome.Sharp.IconButton btnbuscar_producto;
+        private FontAwesome.Sharp.IconButton btnlimpiarbuscador;
     }
 }

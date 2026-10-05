@@ -203,8 +203,7 @@
             this.Stock.MinimumWidth = 6;
             this.Stock.Name = "Stock";
             this.Stock.ReadOnly = true;
-            this.Stock.Visible = false;
-            this.Stock.Width = 125;
+            this.Stock.Width = 70;
             // 
             // PrecioCompra
             // 
@@ -221,8 +220,8 @@
             this.PrecioVenta.MinimumWidth = 6;
             this.PrecioVenta.Name = "PrecioVenta";
             this.PrecioVenta.ReadOnly = true;
-            this.PrecioVenta.Visible = false;
-            this.PrecioVenta.Width = 125;
+            this.PrecioVenta.DefaultCellStyle.Format = "0.00";
+            this.PrecioVenta.Width = 100;
             // 
             // mdProducto
             // 

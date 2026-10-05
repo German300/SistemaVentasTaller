@@ -80,10 +80,11 @@ namespace CapaDatos
                 {
                     // el procedimiento almacenado de la bd para registrar un nuevo Producto, con sus parametros
                     SqlCommand cmd = new SqlCommand("sp_RegistrarProducto".ToString(), oconexion);
-                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                     cmd.Parameters.AddWithValue("Nombre", obj.Nombre);
                     cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
                     cmd.Parameters.AddWithValue("IdCategoria", obj.oCategoria.IdCategoria);
+                    cmd.Parameters.AddWithValue("PrecioCompra", obj.PrecioCompra);
+                    cmd.Parameters.AddWithValue("PrecioVenta", obj.PrecioVenta);
                     cmd.Parameters.AddWithValue("Estado", obj.Estado);
 
 
@@ -126,10 +127,11 @@ namespace CapaDatos
                     // el procedimiento almacenado de la bd para editar un Producto, con sus parametros
                     SqlCommand cmd = new SqlCommand("sp_ModificarProducto".ToString(), oconexion);
                     cmd.Parameters.AddWithValue("IdProducto", obj.IdProducto);
-                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                     cmd.Parameters.AddWithValue("Nombre", obj.Nombre);
                     cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
                     cmd.Parameters.AddWithValue("IdCategoria", obj.oCategoria.IdCategoria);
+                    cmd.Parameters.AddWithValue("PrecioCompra", obj.PrecioCompra);
+                    cmd.Parameters.AddWithValue("PrecioVenta", obj.PrecioVenta);
                     cmd.Parameters.AddWithValue("Estado", obj.Estado);
 
 
