@@ -198,6 +198,18 @@
     <Compile Include="Modales\mdProveedor.Designer.cs">
       <DependentUpon>mdProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modales\mdAgregarProductoVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdAgregarProductoVenta.Designer.cs">
+      <DependentUpon>mdAgregarProductoVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modales\mdCobrarVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdCobrarVenta.Designer.cs">
+      <DependentUpon>mdCobrarVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modales\mdCategoriaDetalle.cs">
       <SubType>Form</SubType>
     </Compile>
