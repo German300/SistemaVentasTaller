@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using CapaPresentacion.Utilidades;
 using CapaPresentacion.Modales;
@@ -15,10 +14,6 @@ namespace CapaPresentacion
         // el usuario logueado no puede darse de baja a sí mismo
         private readonly int _idUsuarioActual;
 
-        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
-        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, string lParam);
-        private const int EM_SETCUEBANNER = 0x1501;
-
         public frmUsuarios(int idUsuarioActual = 0)
         {
             InitializeComponent();
@@ -27,8 +22,7 @@ namespace CapaPresentacion
 
         private void frmUsuarios_Load(object sender, EventArgs e)
         {
-            // texto de ayuda dentro del buscador (se ve aunque tenga el foco)
-            SendMessage(txtbusqueda.Handle, EM_SETCUEBANNER, (IntPtr)1, "Buscar por nombre, apellido, DNI o correo");
+            TextoAyuda.Poner(txtbusqueda, "Buscar por nombre, apellido, DNI o correo");
 
             cborolfiltro.Items.Add(new OpcionCombo() { Valor = 0, Texto = "Todos" });
             foreach (Rol item in new CN_Rol().Listar())

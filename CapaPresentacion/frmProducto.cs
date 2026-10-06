@@ -1,23 +1,19 @@
-﻿using CapaEntidad;
+using CapaEntidad;
 using CapaNegocio;
+using CapaPresentacion.Modales;
 using CapaPresentacion.Utilidades;
 using ClosedXML.Excel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
     public partial class frmProducto : Form
     {
-        private const string TextoCodigoNuevo = "Se genera al guardar";
-
         public frmProducto()
         {
             InitializeComponent();
@@ -25,22 +21,6 @@ namespace CapaPresentacion
 
         private void frmProducto_Load(object sender, EventArgs e)
         {
-            cboestado.Items.Add(new OpcionCombo() { Valor = 1, Texto = "Activo" });
-            cboestado.Items.Add(new OpcionCombo() { Valor = 0, Texto = "No Activo" });
-            cboestado.DisplayMember = "Texto";
-            cboestado.ValueMember = "Valor";
-            cboestado.SelectedIndex = 0;
-
-            // Llenar el combo categoria (solo categorías activas)
-            List<Categoria> listacategoria = new CN_Categoria().Listar();
-            foreach (Categoria item in listacategoria.Where(c => c.Estado))
-            {
-                cbocategoria.Items.Add(new OpcionCombo() { Valor = item.IdCategoria, Texto = item.Descripcion });
-            }
-            cbocategoria.DisplayMember = "Texto";
-            cbocategoria.ValueMember = "Valor";
-            if (cbocategoria.Items.Count > 0) cbocategoria.SelectedIndex = 0;
-
             foreach (DataGridViewColumn columna in dgvdata.Columns)
             {
                 if (columna.Visible == true)
@@ -52,8 +32,14 @@ namespace CapaPresentacion
             cbobusqueda.ValueMember = "Valor";
             if (cbobusqueda.Items.Count > 0) cbobusqueda.SelectedIndex = 1; // Nombre
 
+            cboestadofiltro.Items.Add(new OpcionCombo() { Valor = -1, Texto = "Todos" });
+            cboestadofiltro.Items.Add(new OpcionCombo() { Valor = 1, Texto = "Activo" });
+            cboestadofiltro.Items.Add(new OpcionCombo() { Valor = 0, Texto = "No Activo" });
+            cboestadofiltro.DisplayMember = "Texto";
+            cboestadofiltro.ValueMember = "Valor";
+            cboestadofiltro.SelectedIndex = 0;
+
             CargarProductos();
-            Limpiar();
         }
 
         private void CargarProductos()
@@ -79,67 +65,14 @@ namespace CapaPresentacion
                 });
             }
 
-            dgvdata.ClearSelection();
-        }
-
-        private void btnguardar_Click(object sender, EventArgs e)
-        {
-            if (cbocategoria.SelectedItem == null)
-            {
-                MessageBox.Show("Primero debe crear una categoría activa.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            if (txtprecioventa.Value > 0 && txtprecioventa.Value < txtpreciocompra.Value)
-            {
-                var respuesta = MessageBox.Show("El precio de venta es menor al precio de compra.\n¿Desea guardar de todas formas?",
-                    "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (respuesta == DialogResult.No) return;
-            }
-
-            string mensaje = string.Empty;
-            int idproducto = Convert.ToInt32(txtid.Text);
-
-            Producto obj = new Producto()
-            {
-                IdProducto = idproducto,
-                Nombre = txtnombre_producto.Text.Trim(),
-                Descripcion = txtproducto_descripcion.Text.Trim(),
-                oCategoria = new Categoria() { IdCategoria = Convert.ToInt32(((OpcionCombo)cbocategoria.SelectedItem).Valor) },
-                PrecioCompra = txtpreciocompra.Value,
-                PrecioVenta = txtprecioventa.Value,
-                Stock = Convert.ToInt32(txtcantidad.Value),
-                Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1
-            };
-
-            bool guardado;
-            if (idproducto == 0)
-            {
-                idproducto = new CN_Producto().Registrar(obj, out mensaje);
-                guardado = idproducto != 0;
-            }
-            else
-            {
-                guardado = new CN_Producto().Editar(obj, out mensaje);
-            }
-
-            if (!guardado)
-            {
-                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            // Se recarga la lista para mostrar el código generado por la base de datos
-            CargarProductos();
-            Limpiar();
-            SeleccionarFila(idproducto);
+            AplicarFiltros();
         }
 
         private void SeleccionarFila(int idproducto)
         {
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
-                if (Convert.ToInt32(row.Cells["Id"].Value) == idproducto)
+                if (Convert.ToInt32(row.Cells["Id"].Value) == idproducto && row.Visible)
                 {
                     row.Selected = true;
                     dgvdata.FirstDisplayedScrollingRowIndex = row.Index;
@@ -148,78 +81,109 @@ namespace CapaPresentacion
             }
         }
 
-        private void Limpiar()
+        private DataGridViewRow FilaSeleccionada()
         {
-            txtindice.Text = "-1";
-            txtid.Text = "0";
-            txtcodigo_producto.Text = TextoCodigoNuevo;
-            txtnombre_producto.Text = "";
-            txtproducto_descripcion.Text = "";
-            txtpreciocompra.Value = 0;
-            txtprecioventa.Value = 0;
-            txtcantidad.Value = 0;
-            txtcantidad.Enabled = true;
-            lblcantidad.Text = "Cantidad inicial";
-            if (cbocategoria.Items.Count > 0) cbocategoria.SelectedIndex = 0;
-            if (cboestado.Items.Count > 0) cboestado.SelectedIndex = 0;
-
-            lblmodo.Text = "Nuevo producto";
-            lblmodo.ForeColor = Color.SeaGreen;
-            btnguardar.Text = "Guardar";
-            btneliminar.Enabled = false;
-            btneliminar.BackColor = Color.FromArgb(220, 220, 220);
-
-            dgvdata.ClearSelection();
-            ActualizarGanancia();
-            txtnombre_producto.Select();
+            return dgvdata.SelectedRows.Count > 0 ? dgvdata.SelectedRows[0] : null;
         }
 
-        private void dgvdata_CellClick(object sender, DataGridViewCellEventArgs e)
+        // Editar necesita una fila; Dar de baja además que el producto esté activo
+        private void ActualizarBotones()
         {
-            int indice = e.RowIndex;
-            if (indice < 0) return;
+            DataGridViewRow row = FilaSeleccionada();
+            bool hayFila = row != null;
+            bool activo = hayFila && Convert.ToInt32(row.Cells["EstadoValor"].Value) == 1;
 
-            DataGridViewRow row = dgvdata.Rows[indice];
-
-            txtindice.Text = indice.ToString();
-            txtid.Text = row.Cells["Id"].Value.ToString();
-            txtcodigo_producto.Text = row.Cells["Codigo"].Value.ToString();
-            txtnombre_producto.Text = row.Cells["Nombre"].Value.ToString();
-            txtproducto_descripcion.Text = row.Cells["Descripcion"].Value.ToString();
-            txtpreciocompra.Value = Math.Min(Convert.ToDecimal(row.Cells["PrecioCompra"].Value), txtpreciocompra.Maximum);
-            txtprecioventa.Value = Math.Min(Convert.ToDecimal(row.Cells["PrecioVenta"].Value), txtprecioventa.Maximum);
-
-            // Después del alta, el stock solo cambia con compras y ventas
-            txtcantidad.Value = Math.Max(Math.Min(Convert.ToDecimal(row.Cells["Stock"].Value), txtcantidad.Maximum), 0);
-            txtcantidad.Enabled = false;
-            lblcantidad.Text = "Stock actual";
-
-            foreach (OpcionCombo oc in cbocategoria.Items)
-            {
-                if (Convert.ToInt32(oc.Valor) == Convert.ToInt32(row.Cells["IdCategoria"].Value))
-                {
-                    cbocategoria.SelectedItem = oc;
-                    break;
-                }
-            }
-
-            foreach (OpcionCombo oc in cboestado.Items)
-            {
-                if (Convert.ToInt32(oc.Valor) == Convert.ToInt32(row.Cells["EstadoValor"].Value))
-                {
-                    cboestado.SelectedItem = oc;
-                    break;
-                }
-            }
-
-            lblmodo.Text = "Editando " + txtcodigo_producto.Text;
-            lblmodo.ForeColor = Color.RoyalBlue;
-            btnguardar.Text = "Guardar cambios";
-
-            // Solo se puede dar de baja un producto activo
-            bool activo = Convert.ToInt32(row.Cells["EstadoValor"].Value) == 1;
+            btneditar.Enabled = hayFila;
+            btneditar.BackColor = hayFila ? Color.RoyalBlue : Color.FromArgb(220, 220, 220);
             btneliminar.Enabled = activo;
             btneliminar.BackColor = activo ? Color.Firebrick : Color.FromArgb(220, 220, 220);
+        }
+
+        private void dgvdata_SelectionChanged(object sender, EventArgs e)
+        {
+            ActualizarBotones();
+        }
+
+        private void btnagregar_Click(object sender, EventArgs e)
+        {
+            using (mdProductoDetalle modal = new mdProductoDetalle())
+            {
+                if (modal.ShowDialog(this) == DialogResult.OK)
+                {
+                    // se recarga la lista para mostrar el código generado por la base de datos
+                    CargarProductos();
+                    SeleccionarFila(modal.IdGuardado);
+                }
+            }
+        }
+
+        private void btneditar_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = FilaSeleccionada();
+            if (row != null) EditarFila(row);
+        }
+
+        private void dgvdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) EditarFila(dgvdata.Rows[e.RowIndex]);
+        }
+
+        private void EditarFila(DataGridViewRow row)
+        {
+            Producto producto = new Producto()
+            {
+                IdProducto = Convert.ToInt32(row.Cells["Id"].Value),
+                Codigo = row.Cells["Codigo"].Value.ToString(),
+                Nombre = row.Cells["Nombre"].Value.ToString(),
+                Descripcion = row.Cells["Descripcion"].Value.ToString(),
+                oCategoria = new Categoria() { IdCategoria = Convert.ToInt32(row.Cells["IdCategoria"].Value) },
+                Stock = Convert.ToInt32(row.Cells["Stock"].Value),
+                PrecioCompra = Convert.ToDecimal(row.Cells["PrecioCompra"].Value),
+                PrecioVenta = Convert.ToDecimal(row.Cells["PrecioVenta"].Value),
+                Estado = Convert.ToInt32(row.Cells["EstadoValor"].Value) == 1
+            };
+
+            using (mdProductoDetalle modal = new mdProductoDetalle(producto))
+            {
+                if (modal.ShowDialog(this) == DialogResult.OK)
+                {
+                    CargarProductos();
+                    SeleccionarFila(modal.IdGuardado);
+                }
+            }
+        }
+
+        private void btneliminar_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = FilaSeleccionada();
+            if (row == null) return;
+
+            string pregunta = "¿Desea dar de baja el producto " + row.Cells["Nombre"].Value + "?";
+            if (MessageBox.Show(pregunta, "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            string mensaje = string.Empty;
+            Producto obj = new Producto()
+            {
+                IdProducto = Convert.ToInt32(row.Cells["Id"].Value)
+            };
+
+            bool respuesta = new CN_Producto().Eliminar(obj, out mensaje);
+
+            if (respuesta)
+            {
+                // no se borra: se marca como inactivo en la grilla
+                row.Cells["EstadoValor"].Value = 0;
+                row.Cells["Estado"].Value = "No Activo";
+                dgvdata.InvalidateRow(row.Index);
+                AplicarFiltros();
+
+                MessageBox.Show("Producto dado de baja correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void dgvdata_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -234,60 +198,45 @@ namespace CapaPresentacion
             }
         }
 
-        private void precio_ValueChanged(object sender, EventArgs e)
+        // combina la búsqueda por columna con el filtro de estado
+        private void AplicarFiltros()
         {
-            ActualizarGanancia();
-        }
+            // los combos se llenan en el Load; antes de eso no hay nada que filtrar
+            if (cbobusqueda.SelectedItem == null || cboestadofiltro.SelectedItem == null) return;
 
-        private void ActualizarGanancia()
-        {
-            decimal compra = txtpreciocompra.Value;
-            decimal venta = txtprecioventa.Value;
-
-            if (venta == 0)
-            {
-                lblganancia.Text = "Ganancia por unidad: —";
-                lblganancia.ForeColor = Color.DimGray;
-                return;
-            }
-
-            decimal ganancia = venta - compra;
-            string porcentaje = compra > 0 ? string.Format(" ({0:N0}%)", ganancia / compra * 100) : "";
-
-            lblganancia.Text = string.Format("Ganancia por unidad: {0:N2}{1}", ganancia, porcentaje);
-            lblganancia.ForeColor = ganancia < 0 ? Color.Firebrick : Color.SeaGreen;
-        }
-
-        // Al entrar a un precio se selecciona todo para poder escribir directamente
-        private void numerico_Enter(object sender, EventArgs e)
-        {
-            NumericUpDown control = (NumericUpDown)sender;
-            BeginInvoke((Action)(() => control.Select(0, control.Text.Length)));
-        }
-
-        private void btnlimpiar_Click(object sender, EventArgs e)
-        {
-            Limpiar();
-        }
-
-        private void btnbuscar_producto_Click(object sender, EventArgs e)
-        {
             string columnaFiltro = ((OpcionCombo)cbobusqueda.SelectedItem).Valor.ToString();
             string texto = txtbusqueda.Text.Trim().ToUpper();
+            int estado = Convert.ToInt32(((OpcionCombo)cboestadofiltro.SelectedItem).Valor);
 
+            // no se puede ocultar la fila que tiene la celda actual
             dgvdata.CurrentCell = null;
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
                 object valor = row.Cells[columnaFiltro].Value;
-                row.Visible = valor != null && valor.ToString().Trim().ToUpper().Contains(texto);
+                bool coincideTexto = valor != null && valor.ToString().Trim().ToUpper().Contains(texto);
+                bool coincideEstado = estado == -1 || Convert.ToInt32(row.Cells["EstadoValor"].Value) == estado;
+                row.Visible = coincideTexto && coincideEstado;
             }
+
+            dgvdata.ClearSelection();
+            ActualizarBotones();
+        }
+
+        private void btnbuscar_producto_Click(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+        }
+
+        private void cboestadofiltro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
         }
 
         private void txtbusqueda_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                btnbuscar_producto_Click(sender, e);
+                AplicarFiltros();
                 e.SuppressKeyPress = true;
             }
         }
@@ -295,38 +244,8 @@ namespace CapaPresentacion
         private void btnlimpiarbuscador_Click(object sender, EventArgs e)
         {
             txtbusqueda.Text = "";
-            foreach (DataGridViewRow row in dgvdata.Rows)
-            {
-                row.Visible = true;
-            }
-        }
-
-        private void btneliminar_Click(object sender, EventArgs e)
-        {
-            if (Convert.ToInt32(txtid.Text) != 0)
-            {
-                if (MessageBox.Show("¿Desea dar de baja este producto?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    string mensaje = string.Empty;
-                    Producto obj = new Producto()
-                    {
-                        IdProducto = Convert.ToInt32(txtid.Text)
-                    };
-
-                    bool respuesta = new CN_Producto().Eliminar(obj, out mensaje);
-
-                    if (respuesta)
-                    {
-                        MessageBox.Show("Producto dado de baja correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CargarProductos();
-                        Limpiar();
-                    }
-                    else
-                    {
-                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                }
-            }
+            cboestadofiltro.SelectedIndex = 0;
+            AplicarFiltros();
         }
 
         private void btnexportar_Click(object sender, EventArgs e)
