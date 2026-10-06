@@ -216,7 +216,7 @@ namespace CapaPresentacion
             lblmodo.ForeColor = Color.RoyalBlue;
             btnguardar.Text = "Guardar cambios";
 
-            // Solo se puede eliminar un producto activo
+            // Solo se puede dar de baja un producto activo
             bool activo = Convert.ToInt32(row.Cells["EstadoValor"].Value) == 1;
             btneliminar.Enabled = activo;
             btneliminar.BackColor = activo ? Color.Firebrick : Color.FromArgb(220, 220, 220);
@@ -305,7 +305,7 @@ namespace CapaPresentacion
         {
             if (Convert.ToInt32(txtid.Text) != 0)
             {
-                if (MessageBox.Show("¿Desea eliminar este producto?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("¿Desea dar de baja este producto?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string mensaje = string.Empty;
                     Producto obj = new Producto()
@@ -317,7 +317,7 @@ namespace CapaPresentacion
 
                     if (respuesta)
                     {
-                        MessageBox.Show("Producto eliminado correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Producto dado de baja correctamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CargarProductos();
                         Limpiar();
                     }

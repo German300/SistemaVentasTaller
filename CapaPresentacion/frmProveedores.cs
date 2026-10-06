@@ -204,7 +204,7 @@ namespace CapaPresentacion
         {
             if (Convert.ToInt32(txtid.Text) != 0)
             {
-                if (MessageBox.Show("¿Desea eliminar el proveedor?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("¿Desea dar de baja el proveedor?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string mensaje = string.Empty;
                     Proveedor obj = new Proveedor()
@@ -214,8 +214,13 @@ namespace CapaPresentacion
                     bool respuesta = new CN_Proveedor().Eliminar(obj, out mensaje);
                     if (respuesta)
                     {
-                        dgvdata.Rows.RemoveAt(Convert.ToInt32(txtindice.Text));
+                        // no se borra: se marca como inactivo en la grilla
+                        DataGridViewRow row = dgvdata.Rows[Convert.ToInt32(txtindice.Text)];
+                        row.Cells["EstadoValor"].Value = 0;
+                        row.Cells["Estado"].Value = "No Activo";
+                        dgvdata.InvalidateRow(row.Index);
                         Limpiar();
+                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {

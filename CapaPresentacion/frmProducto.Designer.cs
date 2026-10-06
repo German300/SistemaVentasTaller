@@ -378,7 +378,7 @@
             this.btneliminar.FlatAppearance.BorderSize = 0;
             this.btneliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btneliminar.ForeColor = System.Drawing.Color.White;
-            this.btneliminar.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.btneliminar.IconChar = FontAwesome.Sharp.IconChar.Ban;
             this.btneliminar.IconColor = System.Drawing.Color.White;
             this.btneliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btneliminar.IconSize = 16;
@@ -386,7 +386,7 @@
             this.btneliminar.Name = "btneliminar";
             this.btneliminar.Size = new System.Drawing.Size(131, 36);
             this.btneliminar.TabIndex = 10;
-            this.btneliminar.Text = "Eliminar";
+            this.btneliminar.Text = "Dar de baja";
             this.btneliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btneliminar.UseVisualStyleBackColor = false;
             this.btneliminar.Click += new System.EventHandler(this.btneliminar_Click);
