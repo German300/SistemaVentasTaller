@@ -14,16 +14,6 @@ namespace CapaNegocio
 
         private CD_Venta objcd_venta = new CD_Venta();
 
-        public bool RestarStock(int idproducto, int cantidad)
-        {
-            return objcd_venta.RestarStock(idproducto, cantidad);
-        }
-
-        public bool SumarStock(int idproducto, int cantidad)
-        {
-            return objcd_venta.SumarStock(idproducto, cantidad);
-        }
-
         public int ObtenerCorrelativo()
         {
             return objcd_venta.ObtenerCorrelativo();
