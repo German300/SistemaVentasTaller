@@ -21,7 +21,8 @@ namespace CapaPresentacion
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Inicio());
+            // el sistema arranca pidiendo usuario y clave
+            Application.Run(new Login());
         }
     }
 }

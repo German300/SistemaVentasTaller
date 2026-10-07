@@ -97,8 +97,7 @@
             this.label3.Size = new System.Drawing.Size(101, 16);
             this.label3.TabIndex = 5;
             this.label3.Text = "Nro Documento";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
+            //
             // label4
             // 
             this.label4.AutoSize = true;
@@ -169,7 +168,6 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

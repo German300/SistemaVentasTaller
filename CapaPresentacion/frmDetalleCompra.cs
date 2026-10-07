@@ -1,65 +1,23 @@
-﻿using CapaEntidad;
-
+using CapaEntidad;
 using CapaNegocio;
-
-using DocumentFormat.OpenXml.Wordprocessing;
-
 using iTextSharp.text.pdf;
-
 using iTextSharp.tool.xml;
-
 using System;
-
-using System.Collections.Generic;
-
-using System.ComponentModel;
-
-using System.Data;
-
-using System.Drawing;
-
 using System.IO;
-
-using System.Linq;
-
-using System.Text;
-
-using System.Threading.Tasks;
-
 using System.Windows.Forms;
 
-
-
 namespace CapaPresentacion
-
 {
-
+    // Pantalla para consultar una compra ya registrada y descargarla en PDF
     public partial class frmDetalleCompra : Form
-
     {
-
         public frmDetalleCompra()
-
         {
-
             InitializeComponent();
-
         }
 
-
-
-        private void label3_Click(object sender, EventArgs e)
-
-        {
-
-
-
-        }
-
-
-
+        // Botón Borrar: limpia los datos de la compra mostrada
         private void btnborrar_Click(object sender, EventArgs e)
-
         {
             txtfecha.Text = "";
             txttipodocumento.Text = "";
@@ -68,19 +26,15 @@ namespace CapaPresentacion
             txtnombreproveedor.Text = "";
             dgvdata.Rows.Clear();
             txtmontototal.Text = "0.00";
-
         }
 
-
-
+        // Botón Buscar: trae la compra por su número y la muestra con sus productos
         private void btnbuscar_Click(object sender, EventArgs e)
-
         {
             Compra Ocompra = new CN_Compra().ObtenerCompra(txtbusqueda.Text);
+
             if (Ocompra.IdCompra != 0)
-
             {
-
                 txtnumerodocumento.Text = Ocompra.NumeroDocumento;
                 txtfecha.Text = Ocompra.FechaRegistro;
                 txttipodocumento.Text = Ocompra.TipoDocumento;
@@ -88,23 +42,17 @@ namespace CapaPresentacion
                 txtdocproveedor.Text = Ocompra.oProveedor.Documento;
                 txtnombreproveedor.Text = Ocompra.oProveedor.RazonSocial;
 
-
                 dgvdata.Rows.Clear();
-
                 foreach (Detalle_Compra dc in Ocompra.oDetalleCompra)
-
                 {
-
                     dgvdata.Rows.Add(new object[] { dc.oProducto.Nombre, dc.PrecioCompra, dc.Cantidad, dc.MontoTotal });
-
                 }
 
                 txtmontototal.Text = Ocompra.MontoTotal.ToString("0.00");
-
             }
-
         }
 
+        // Botón Descargar PDF: completa la plantilla HTML con los datos y la convierte a PDF
         private void btndescargarpdf_Click(object sender, EventArgs e)
         {
             if (txttipodocumento.Text == "")
@@ -113,6 +61,7 @@ namespace CapaPresentacion
                 return;
             }
 
+            // la plantilla está en Resources/PlantillaCompra.html y tiene marcadores @...
             string Texto_Html = Properties.Resources.PlantillaCompra.ToString();
             Negocio oDatos = new CN_Negocio().ObtenerDatos();
 
@@ -128,10 +77,10 @@ namespace CapaPresentacion
             Texto_Html = Texto_Html.Replace("@fecharegistro", txtfecha.Text);
             Texto_Html = Texto_Html.Replace("@usuarioregistro", txtusuario.Text);
 
+            // una fila <tr> de la tabla por cada producto de la compra
             string filas = string.Empty;
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
-            
                 if (row.IsNewRow) continue;
 
                 filas += "<tr>";
@@ -153,12 +102,12 @@ namespace CapaPresentacion
             {
                 using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
                 {
-                  
                     iTextSharp.text.Document pdfdoc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 25, 25, 25, 25);
 
                     PdfWriter writer = PdfWriter.GetInstance(pdfdoc, stream);
                     pdfdoc.Open();
 
+                    // logo del negocio arriba a la izquierda, si hay uno cargado
                     byte[] byteimagen = new CN_Negocio().ObtenerLogo(out bool obtenido);
                     if (obtenido)
                     {
@@ -169,6 +118,7 @@ namespace CapaPresentacion
                         pdfdoc.Add(img);
                     }
 
+                    // convierte el HTML a contenido del PDF
                     using (StringReader sr = new StringReader(Texto_Html))
                     {
                         XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfdoc, sr);
@@ -180,7 +130,5 @@ namespace CapaPresentacion
                 }
             }
         }
-
     }
-
 }
