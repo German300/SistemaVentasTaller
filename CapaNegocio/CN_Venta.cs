@@ -1,17 +1,11 @@
 ﻿using CapaDatos;
 using CapaEntidad;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
     public class CN_Venta
     {
-
         private CD_Venta objcd_venta = new CD_Venta();
 
         public int ObtenerCorrelativo()

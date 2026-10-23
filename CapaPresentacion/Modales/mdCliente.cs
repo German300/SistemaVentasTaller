@@ -3,13 +3,14 @@ using CapaNegocio;
 using CapaPresentacion.Utilidades;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Windows.Forms;
 
 namespace CapaPresentacion.Modales
 {
+    // Ventana para elegir un cliente activo (se usa en Ventas)
     public partial class mdCliente : Form
     {
+        // el cliente elegido con doble click
         public Cliente _Cliente { get; set; }
 
         public mdCliente()
@@ -19,86 +20,58 @@ namespace CapaPresentacion.Modales
 
         private void mdCliente_Load(object sender, EventArgs e)
         {
-            cbobusqueda.Items.Clear();
-            dgvdata.Rows.Clear();
-
-            // Cargar combo de búsqueda
+            // el combo de búsqueda ofrece las columnas visibles de la grilla
             foreach (DataGridViewColumn columna in dgvdata.Columns)
             {
-                if (columna.Visible)
+                if (columna.Visible && columna.HeaderText != "")
                 {
                     cbobusqueda.Items.Add(new OpcionCombo() { Valor = columna.Name, Texto = columna.HeaderText });
                 }
             }
             cbobusqueda.DisplayMember = "Texto";
             cbobusqueda.ValueMember = "Valor";
-            if (cbobusqueda.Items.Count > 0) cbobusqueda.SelectedIndex = 0;
+            cbobusqueda.SelectedIndex = 0;
 
-            // Cargar datos
             List<Cliente> lista = new CN_Cliente().Listar();
 
             foreach (Cliente item in lista)
             {
                 if (item.Estado)
                 {
-                    // SI TU GRILLA TIENE COLUMNA DE SELECCIÓN O BOTÓN EN EL ÍNDICE 0:
-                    // Descomenta la opción A. Si solo tiene 2 columnas, usa la opción B.
-
-                    // OPCIÓN A (Si la primera columna es un botón/vacía):
-                    dgvdata.Rows.Add(new object[] { "", item.Documento, item.NombreCompleto });
-
-                    // OPCIÓN B (Si NO hay columna vacía):
-                    // dgvdata.Rows.Add(new object[] { item.Documento, item.NombreCompleto });
+                    // columnas: btnseleccionar, Id, Documento, NombreCompleto
+                    dgvdata.Rows.Add(new object[] { "", item.IdCliente, item.Documento, item.NombreCompleto });
                 }
             }
         }
 
         private void dgvdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int iRow = e.RowIndex;
-            int iColumn = e.ColumnIndex;
+            if (e.RowIndex < 0)
+                return;
 
-            if (iRow >= 0 && iColumn >= 0)
+            DataGridViewRow row = dgvdata.Rows[e.RowIndex];
+
+            _Cliente = new Cliente()
             {
-                // Leemos por el Name explícito asignado en el Diseñador
-                var docVal = dgvdata.Rows[iRow].Cells["Documento"].Value;
-                var nomVal = dgvdata.Rows[iRow].Cells["NombreCompleto"].Value;
+                IdCliente = Convert.ToInt32(row.Cells["Id"].Value),
+                Documento = row.Cells["Documento"].Value.ToString(),
+                NombreCompleto = row.Cells["NombreCompleto"].Value.ToString()
+            };
 
-                // Si por alguna razón el Name no está configurado, usamos los índices según tu vista:
-                if (docVal == null) docVal = dgvdata.Rows[iRow].Cells[0].Value; // o Cells[1]
-                if (nomVal == null) nomVal = dgvdata.Rows[iRow].Cells[1].Value; // o Cells[2]
-
-                _Cliente = new Cliente()
-                {
-                    Documento = docVal != null ? docVal.ToString() : "",
-                    NombreCompleto = nomVal != null ? nomVal.ToString() : ""
-                };
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void btnbuscar_Click(object sender, EventArgs e)
         {
-            if (cbobusqueda.SelectedItem == null) return;
-
             string columnaFiltro = ((OpcionCombo)cbobusqueda.SelectedItem).Valor.ToString();
+            string texto = txtbusqueda.Text.Trim().ToUpper();
 
-            if (dgvdata.Rows.Count > 0)
+            // no se puede ocultar la fila que tiene la celda actual
+            dgvdata.CurrentCell = null;
+            foreach (DataGridViewRow row in dgvdata.Rows)
             {
-                foreach (DataGridViewRow row in dgvdata.Rows)
-                {
-                    if (row.Cells[columnaFiltro].Value != null &&
-                        row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txtbusqueda.Text.Trim().ToUpper()))
-                    {
-                        row.Visible = true;
-                    }
-                    else
-                    {
-                        row.Visible = false;
-                    }
-                }
+                row.Visible = row.Cells[columnaFiltro].Value.ToString().ToUpper().Contains(texto);
             }
         }
 

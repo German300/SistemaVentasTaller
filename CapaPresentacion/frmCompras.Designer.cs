@@ -284,8 +284,7 @@
             this.txtprecioventa.Name = "txtprecioventa";
             this.txtprecioventa.Size = new System.Drawing.Size(122, 27);
             this.txtprecioventa.TabIndex = 64;
-            this.txtprecioventa.TextChanged += new System.EventHandler(this.txtprecioventa_TextChanged);
-            this.txtprecioventa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtprecioventa_KeyPress);
+            this.txtprecioventa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SoloDecimales_KeyPress);
             // 
             // label9
             // 
@@ -302,7 +301,7 @@
             this.txtpreciocompra.Name = "txtpreciocompra";
             this.txtpreciocompra.Size = new System.Drawing.Size(122, 27);
             this.txtpreciocompra.TabIndex = 62;
-            this.txtpreciocompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpreciocompra_KeyPress);
+            this.txtpreciocompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SoloDecimales_KeyPress);
             // 
             // label8
             // 
@@ -352,7 +351,6 @@
             this.txtcodproducto.Name = "txtcodproducto";
             this.txtcodproducto.Size = new System.Drawing.Size(150, 27);
             this.txtcodproducto.TabIndex = 3;
-            this.txtcodproducto.TextChanged += new System.EventHandler(this.txtcodproducto_TextChanged);
             this.txtcodproducto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtcodproducto_KeyDown);
             // 
             // label6

@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
     internal static class Program
     {
-        /// <summary>
-        /// Punto de entrada principal para la aplicación.
-        /// </summary>
+        // Punto de entrada de la aplicación
         [STAThread]
         static void Main()
         {
-            // Establecer la cultura de la aplicación a español (Argentina)
-            // para que no me de cualquier cosa en los precios de los productos
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es-AR");
-
+            // idioma español (Argentina) para los textos del sistema
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-AR");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             // el sistema arranca pidiendo usuario y clave
             Application.Run(new Login());
         }

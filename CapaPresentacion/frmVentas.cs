@@ -11,9 +11,10 @@ namespace CapaPresentacion
 {
     public partial class frmVentas : Form
     {
+        // usuario que inició sesión: queda registrado como el que hizo la venta
         private Usuario _Usuario;
 
-        public frmVentas(Usuario oUsuario = null)
+        public frmVentas(Usuario oUsuario)
         {
             InitializeComponent();
             _Usuario = oUsuario;
@@ -166,7 +167,7 @@ namespace CapaPresentacion
 
             Venta oVenta = new Venta()
             {
-                oUsuario = new Usuario() { IdUsuario = _Usuario != null ? _Usuario.IdUsuario : 1 },
+                oUsuario = new Usuario() { IdUsuario = _Usuario.IdUsuario },
                 TipoDocumento = ((OpcionCombo)cbotipodocumento.SelectedItem).Valor.ToString(),
                 NumeroDocumento = numeroDocumento,
                 DocumentoCliente = txtdocumentocliente.Text.Trim(),
