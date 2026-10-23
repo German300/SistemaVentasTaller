@@ -16,9 +16,14 @@ namespace CapaNegocio
         {
             Mensaje = string.Empty;
 
+            // CUIT del negocio: obligatorio, 11 números sin guiones
             if (obj.RUC == "")
             {
-                Mensaje += "El RUC es obligatorio\n";
+                Mensaje += "El CUIT es obligatorio\n";
+            }
+            else if (!Validacion.SoloNumeros(obj.RUC) || obj.RUC.Length != 11)
+            {
+                Mensaje += "El CUIT debe tener 11 números, sin guiones\n";
             }
             if (obj.Nombre == "")
             {

@@ -78,6 +78,7 @@
             // 
             this.txtdocumento.Location = new System.Drawing.Point(368, 66);
             this.txtdocumento.Name = "txtdocumento";
+            this.txtdocumento.MaxLength = 8;
             this.txtdocumento.Size = new System.Drawing.Size(222, 22);
             this.txtdocumento.TabIndex = 3;
             // 
@@ -85,6 +86,7 @@
             // 
             this.txtclave.Location = new System.Drawing.Point(368, 156);
             this.txtclave.Name = "txtclave";
+            this.txtclave.MaxLength = 50;
             this.txtclave.PasswordChar = '*';
             this.txtclave.Size = new System.Drawing.Size(222, 22);
             this.txtclave.TabIndex = 4;

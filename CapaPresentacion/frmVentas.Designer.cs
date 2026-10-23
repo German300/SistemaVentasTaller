@@ -325,6 +325,7 @@ namespace CapaPresentacion
             this.txtdocumentocliente.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtdocumentocliente.Location = new System.Drawing.Point(350, 78);
             this.txtdocumentocliente.Name = "txtdocumentocliente";
+            this.txtdocumentocliente.MaxLength = 8;
             this.txtdocumentocliente.Size = new System.Drawing.Size(170, 30);
             this.txtdocumentocliente.TabIndex = 2;
             //
@@ -359,6 +360,7 @@ namespace CapaPresentacion
             this.txtnombrecliente.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtnombrecliente.Location = new System.Drawing.Point(584, 78);
             this.txtnombrecliente.Name = "txtnombrecliente";
+            this.txtnombrecliente.MaxLength = 100;
             this.txtnombrecliente.Size = new System.Drawing.Size(340, 30);
             this.txtnombrecliente.TabIndex = 4;
             //

@@ -24,6 +24,9 @@ namespace CapaPresentacion.Modales
 
         private void mdUsuario_Load(object sender, EventArgs e)
         {
+            // en el DNI solo se pueden escribir números
+            txtdocumento.KeyPress += Teclado.SoloNumeros;
+
             List<Rol> listaRol = new CN_Rol().Listar();
             foreach (Rol item in listaRol)
             {

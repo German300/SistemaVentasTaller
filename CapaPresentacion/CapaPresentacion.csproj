@@ -249,6 +249,7 @@
     </Compile>
     <Compile Include="Utilidades\OpcionCombo.cs" />
     <Compile Include="Utilidades\TextoAyuda.cs" />
+    <Compile Include="Utilidades\Teclado.cs" />
     <EmbeddedResource Include="FrmCategoria.resx">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
     </EmbeddedResource>

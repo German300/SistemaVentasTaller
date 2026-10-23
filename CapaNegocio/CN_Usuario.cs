@@ -58,14 +58,32 @@ namespace CapaNegocio
         {
             string Mensaje = string.Empty;
 
+            // DNI: obligatorio, solo números, hasta 8 dígitos
             if (obj.Documento == "")
             {
                 Mensaje += "El documento es obligatorio\n";
             }
+            else if (!Validacion.SoloNumeros(obj.Documento) || obj.Documento.Length > 8)
+            {
+                Mensaje += "El documento debe tener solo números (hasta 8 dígitos)\n";
+            }
+
+            // nombre: obligatorio, solo letras y espacios
             if (obj.NombreCompleto == "")
             {
                 Mensaje += "El nombre completo es obligatorio\n";
             }
+            else if (!Validacion.SoloLetras(obj.NombreCompleto))
+            {
+                Mensaje += "El nombre solo puede tener letras y espacios\n";
+            }
+
+            // correo: no es obligatorio, pero si se carga tiene que tener formato válido
+            if (!string.IsNullOrEmpty(obj.Correo) && !Validacion.CorreoValido(obj.Correo))
+            {
+                Mensaje += "El correo no tiene un formato válido (ejemplo: nombre@gmail.com)\n";
+            }
+
             if (obj.Clave == "")
             {
                 Mensaje += "La clave es obligatoria\n";

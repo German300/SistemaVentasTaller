@@ -60,13 +60,13 @@ namespace CapaPresentacion.Modales
             this.lbldocumento.Name = "lbldocumento";
             this.lbldocumento.Size = new System.Drawing.Size(121, 20);
             this.lbldocumento.TabIndex = 0;
-            this.lbldocumento.Text = "Nro documento *";
+            this.lbldocumento.Text = "CUIT *";
             //
             // txtdocumento
             //
             this.txtdocumento.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtdocumento.Location = new System.Drawing.Point(24, 84);
-            this.txtdocumento.MaxLength = 50;
+            this.txtdocumento.MaxLength = 11;
             this.txtdocumento.Name = "txtdocumento";
             this.txtdocumento.Size = new System.Drawing.Size(352, 30);
             this.txtdocumento.TabIndex = 1;
@@ -102,7 +102,7 @@ namespace CapaPresentacion.Modales
             //
             this.txtcorreo.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtcorreo.Location = new System.Drawing.Point(24, 204);
-            this.txtcorreo.MaxLength = 100;
+            this.txtcorreo.MaxLength = 50;
             this.txtcorreo.Name = "txtcorreo";
             this.txtcorreo.Size = new System.Drawing.Size(352, 30);
             this.txtcorreo.TabIndex = 3;
@@ -120,7 +120,7 @@ namespace CapaPresentacion.Modales
             //
             this.txttelefono.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txttelefono.Location = new System.Drawing.Point(24, 264);
-            this.txttelefono.MaxLength = 50;
+            this.txttelefono.MaxLength = 15;
             this.txttelefono.Name = "txttelefono";
             this.txttelefono.Size = new System.Drawing.Size(352, 30);
             this.txttelefono.TabIndex = 4;

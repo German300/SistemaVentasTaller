@@ -22,6 +22,9 @@ namespace CapaPresentacion
 
         private void frmVentas_Load(object sender, EventArgs e)
         {
+            // en el DNI del cliente solo se pueden escribir números
+            txtdocumentocliente.KeyPress += Teclado.SoloNumeros;
+
             cbotipodocumento.Items.Add(new OpcionCombo() { Valor = "Boleta", Texto = "Boleta" });
             cbotipodocumento.Items.Add(new OpcionCombo() { Valor = "Factura", Texto = "Factura" });
             cbotipodocumento.DisplayMember = "Texto";
