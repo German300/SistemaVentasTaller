@@ -18,6 +18,16 @@ namespace CapaNegocio
             return objcd_usuario.Listar();
         }
 
+        // Devuelve el usuario si el documento y la clave son correctos y está activo; si no, null
+        public Usuario Login(string documento, string clave)
+        {
+            if (documento == "" || clave == "")
+            {
+                return null;
+            }
+            return objcd_usuario.Login(documento, clave);
+        }
+
         public int Registrar(Usuario obj, out string Mensaje)
         {
             Mensaje = string.Empty;
