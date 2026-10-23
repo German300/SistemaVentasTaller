@@ -5,6 +5,7 @@ using CapaPresentacion.Utilidades;
 using System;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -104,40 +105,38 @@ namespace CapaPresentacion
                 return;
             }
 
-            if (!decimal.TryParse(txtpreciocompra.Text, out precioCompra))
+            if (!LeerPrecio(txtpreciocompra.Text, out precioCompra) || precioCompra <= 0 || precioCompra > PrecioMaximo)
             {
-                MessageBox.Show("Precio de compra no es un valor válido", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("El precio de compra debe ser un número mayor a 0 y menor a 99.999.999,99", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtpreciocompra.Select();
                 return;
             }
 
-            if (!decimal.TryParse(txtprecioventa.Text, out precioVenta))
+            if (!LeerPrecio(txtprecioventa.Text, out precioVenta) || precioVenta <= 0 || precioVenta > PrecioMaximo)
             {
-                MessageBox.Show("Precio de venta no es un valor válido", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("El precio de venta debe ser un número mayor a 0 y menor a 99.999.999,99", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtprecioventa.Select();
                 return;
             }
 
             // un mismo producto no se agrega dos veces
-            bool productoExiste = false;
             foreach (DataGridViewRow fila in dgvdata.Rows)
             {
                 if (fila.Cells["IdProducto"].Value.ToString() == txtidproducto.Text)
                 {
-                    productoExiste = true;
-                    break;
+                    MessageBox.Show("El producto ya está en la lista de la compra", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
                 }
             }
 
-            if (!productoExiste)
-            {
-                dgvdata.Rows.Add(new object[] {
-                    txtidproducto.Text,
-                    txtproducto.Text,
-                    precioCompra.ToString("0.00"),
-                    precioVenta.ToString("0.00"),
-                    txtcantidad.Value.ToString(),
-                    (txtcantidad.Value * precioCompra).ToString("0.00")
-                });
-            }
+            dgvdata.Rows.Add(new object[] {
+                txtidproducto.Text,
+                txtproducto.Text,
+                precioCompra.ToString("0.00"),
+                precioVenta.ToString("0.00"),
+                txtcantidad.Value.ToString(),
+                (txtcantidad.Value * precioCompra).ToString("0.00")
+            });
 
             LimpiarProducto();
             CalcularTotal();
@@ -194,7 +193,7 @@ namespace CapaPresentacion
             }
         }
 
-        // En los precios solo se pueden escribir números y el punto decimal
+        // En los precios solo se pueden escribir números y un separador decimal (punto o coma)
         private void SoloDecimales_KeyPress(object sender, KeyPressEventArgs e)
         {
             TextBox caja = (TextBox)sender;
@@ -203,11 +202,23 @@ namespace CapaPresentacion
             if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
                 return;
 
-            // el punto se permite, pero no como primer carácter
-            if (e.KeyChar == '.' && caja.Text.Trim() != "")
+            // el separador se permite una sola vez y no como primer carácter
+            bool esSeparador = e.KeyChar == '.' || e.KeyChar == ',';
+            bool yaTieneSeparador = caja.Text.Contains(".") || caja.Text.Contains(",");
+            if (esSeparador && caja.Text.Trim() != "" && !yaTieneSeparador)
                 return;
 
             e.Handled = true; // cualquier otra tecla se ignora
+        }
+
+        // lo máximo que entra en las columnas decimal(10,2) de la base
+        private const decimal PrecioMaximo = 99999999.99m;
+
+        // Convierte el texto a número aceptando "10.50" o "10,50",
+        // sin importar la configuración regional de la PC
+        private bool LeerPrecio(string texto, out decimal precio)
+        {
+            return decimal.TryParse(texto.Replace(',', '.'), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out precio);
         }
 
         private void btnregistrar_Click(object sender, EventArgs e)

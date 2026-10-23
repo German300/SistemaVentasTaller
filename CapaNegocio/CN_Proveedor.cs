@@ -47,17 +47,39 @@ namespace CapaNegocio
         {
             string Mensaje = string.Empty;
 
+            // CUIT: obligatorio, 11 números sin guiones
             if (obj.Documento == "")
             {
-                Mensaje += "El documento del proveedor es obligatorio\n";
+                Mensaje += "El CUIT del proveedor es obligatorio\n";
             }
+            else if (!Validacion.SoloNumeros(obj.Documento) || obj.Documento.Length != 11)
+            {
+                Mensaje += "El CUIT debe tener 11 números, sin guiones\n";
+            }
+
+            // la razón social puede tener números y puntos (ej: "Distribuidora 2000 S.A.")
             if (obj.RazonSocial == "")
             {
                 Mensaje += "La razón social del proveedor es obligatoria\n";
             }
+
+            // correo: obligatorio, con formato algo@algo.algo
             if (obj.Correo == "")
             {
                 Mensaje += "El correo del proveedor es obligatorio\n";
+            }
+            else if (!Validacion.CorreoValido(obj.Correo))
+            {
+                Mensaje += "El correo no tiene un formato válido (ejemplo: ventas@empresa.com)\n";
+            }
+
+            // teléfono: no es obligatorio, pero si se carga, solo números de 8 a 15 dígitos
+            if (!string.IsNullOrEmpty(obj.Telefono))
+            {
+                if (!Validacion.SoloNumeros(obj.Telefono) || obj.Telefono.Length < 8 || obj.Telefono.Length > 15)
+                {
+                    Mensaje += "El teléfono debe tener solo números (entre 8 y 15 dígitos)\n";
+                }
             }
 
             return Mensaje;

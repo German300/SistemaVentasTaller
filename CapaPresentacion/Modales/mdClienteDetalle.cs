@@ -26,6 +26,10 @@ namespace CapaPresentacion.Modales
 
         private void mdClienteDetalle_Load(object sender, EventArgs e)
         {
+            // en el DNI y el teléfono solo se pueden escribir números
+            txtdocumento.KeyPress += Teclado.SoloNumeros;
+            txttelefono.KeyPress += Teclado.SoloNumeros;
+
             cboestado.Items.Add(new OpcionCombo() { Valor = 1, Texto = "Activo" });
             cboestado.Items.Add(new OpcionCombo() { Valor = 0, Texto = "No Activo" });
             cboestado.DisplayMember = "Texto";

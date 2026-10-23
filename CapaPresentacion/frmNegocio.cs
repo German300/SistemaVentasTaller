@@ -1,5 +1,6 @@
 ﻿using CapaEntidad;
 using CapaNegocio;
+using CapaPresentacion.Utilidades;
 using System;
 using System.Drawing;
 using System.IO;
@@ -24,6 +25,9 @@ namespace CapaPresentacion
 
         private void frmNegocio_Load(object sender, EventArgs e)
         {
+            // en el CUIT solo se pueden escribir números
+            txtruc.KeyPress += Teclado.SoloNumeros;
+
             bool obtenido;
             byte[] byteimage = new CN_Negocio().ObtenerLogo(out obtenido);
 
@@ -66,9 +70,9 @@ namespace CapaPresentacion
             string mensaje = string.Empty;
             Negocio obj = new Negocio()
             {
-                Nombre = txtnombrenegocio.Text,
-                RUC = txtruc.Text,
-                Direccion = txtdireccion.Text
+                Nombre = txtnombrenegocio.Text.Trim(),
+                RUC = txtruc.Text.Trim(),
+                Direccion = txtdireccion.Text.Trim()
             };
 
             bool respuesta = new CN_Negocio().GuardarDatos(obj, out mensaje);

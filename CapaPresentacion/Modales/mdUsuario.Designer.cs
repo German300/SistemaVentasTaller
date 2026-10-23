@@ -70,6 +70,7 @@ namespace CapaPresentacion.Modales
             //
             this.txtdocumento.Location = new System.Drawing.Point(28, 86);
             this.txtdocumento.Name = "txtdocumento";
+            this.txtdocumento.MaxLength = 8;
             this.txtdocumento.Size = new System.Drawing.Size(320, 22);
             this.txtdocumento.TabIndex = 2;
             //
@@ -86,6 +87,7 @@ namespace CapaPresentacion.Modales
             //
             this.txtnombrecompleto.Location = new System.Drawing.Point(28, 140);
             this.txtnombrecompleto.Name = "txtnombrecompleto";
+            this.txtnombrecompleto.MaxLength = 50;
             this.txtnombrecompleto.Size = new System.Drawing.Size(320, 22);
             this.txtnombrecompleto.TabIndex = 4;
             //
@@ -102,6 +104,7 @@ namespace CapaPresentacion.Modales
             //
             this.txtcorreo.Location = new System.Drawing.Point(28, 194);
             this.txtcorreo.Name = "txtcorreo";
+            this.txtcorreo.MaxLength = 50;
             this.txtcorreo.Size = new System.Drawing.Size(320, 22);
             this.txtcorreo.TabIndex = 6;
             //
@@ -118,6 +121,7 @@ namespace CapaPresentacion.Modales
             //
             this.txtclave.Location = new System.Drawing.Point(28, 248);
             this.txtclave.Name = "txtclave";
+            this.txtclave.MaxLength = 50;
             this.txtclave.PasswordChar = '*';
             this.txtclave.Size = new System.Drawing.Size(320, 22);
             this.txtclave.TabIndex = 8;
@@ -135,6 +139,7 @@ namespace CapaPresentacion.Modales
             //
             this.txtconfirmarclave.Location = new System.Drawing.Point(28, 302);
             this.txtconfirmarclave.Name = "txtconfirmarclave";
+            this.txtconfirmarclave.MaxLength = 50;
             this.txtconfirmarclave.PasswordChar = '*';
             this.txtconfirmarclave.Size = new System.Drawing.Size(320, 22);
             this.txtconfirmarclave.TabIndex = 10;

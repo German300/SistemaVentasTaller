@@ -105,6 +105,7 @@
             // 
             this.txtdireccion.Location = new System.Drawing.Point(265, 197);
             this.txtdireccion.Name = "txtdireccion";
+            this.txtdireccion.MaxLength = 60;
             this.txtdireccion.Size = new System.Drawing.Size(298, 22);
             this.txtdireccion.TabIndex = 26;
             // 
@@ -128,6 +129,7 @@
             // 
             this.txtruc.Location = new System.Drawing.Point(265, 138);
             this.txtruc.Name = "txtruc";
+            this.txtruc.MaxLength = 11;
             this.txtruc.Size = new System.Drawing.Size(298, 22);
             this.txtruc.TabIndex = 25;
             // 
@@ -144,6 +146,7 @@
             // 
             this.txtnombrenegocio.Location = new System.Drawing.Point(265, 74);
             this.txtnombrenegocio.Name = "txtnombrenegocio";
+            this.txtnombrenegocio.MaxLength = 60;
             this.txtnombrenegocio.Size = new System.Drawing.Size(298, 22);
             this.txtnombrenegocio.TabIndex = 24;
             // 
@@ -185,7 +188,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(42, 16);
             this.label5.TabIndex = 22;
-            this.label5.Text = "R.U.C";
+            this.label5.Text = "CUIT";
             // 
             // frmNegocio
             // 

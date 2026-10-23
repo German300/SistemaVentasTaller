@@ -2,6 +2,7 @@ using System;
 using System.Windows.Forms;
 using CapaEntidad;
 using CapaNegocio;
+using CapaPresentacion.Utilidades;
 
 namespace CapaPresentacion
 {
@@ -11,6 +12,9 @@ namespace CapaPresentacion
         public Login()
         {
             InitializeComponent();
+
+            // en el DNI solo se pueden escribir números
+            txtdocumento.KeyPress += Teclado.SoloNumeros;
         }
 
         // Botón Cancelar: cierra el programa

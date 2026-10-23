@@ -282,6 +282,7 @@
             // 
             this.txtprecioventa.Location = new System.Drawing.Point(748, 57);
             this.txtprecioventa.Name = "txtprecioventa";
+            this.txtprecioventa.MaxLength = 11;
             this.txtprecioventa.Size = new System.Drawing.Size(122, 27);
             this.txtprecioventa.TabIndex = 64;
             this.txtprecioventa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SoloDecimales_KeyPress);
@@ -299,6 +300,7 @@
             // 
             this.txtpreciocompra.Location = new System.Drawing.Point(576, 57);
             this.txtpreciocompra.Name = "txtpreciocompra";
+            this.txtpreciocompra.MaxLength = 11;
             this.txtpreciocompra.Size = new System.Drawing.Size(122, 27);
             this.txtpreciocompra.TabIndex = 62;
             this.txtpreciocompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SoloDecimales_KeyPress);
