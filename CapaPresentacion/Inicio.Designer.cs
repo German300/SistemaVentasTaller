@@ -48,6 +48,7 @@
             this.contenedor = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.lblusuario = new System.Windows.Forms.Label();
+            this.btncerrarsesion = new FontAwesome.Sharp.IconButton();
             this.submenunegocio = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -304,7 +305,28 @@
             this.lblusuario.Size = new System.Drawing.Size(81, 20);
             this.lblusuario.TabIndex = 5;
             this.lblusuario.Text = "lblusuario";
-            // 
+            //
+            // btncerrarsesion
+            //
+            this.btncerrarsesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btncerrarsesion.BackColor = System.Drawing.Color.White;
+            this.btncerrarsesion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btncerrarsesion.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btncerrarsesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btncerrarsesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btncerrarsesion.IconChar = FontAwesome.Sharp.IconChar.RightFromBracket;
+            this.btncerrarsesion.IconColor = System.Drawing.Color.Black;
+            this.btncerrarsesion.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btncerrarsesion.IconSize = 18;
+            this.btncerrarsesion.Location = new System.Drawing.Point(1340, 28);
+            this.btncerrarsesion.Name = "btncerrarsesion";
+            this.btncerrarsesion.Size = new System.Drawing.Size(150, 32);
+            this.btncerrarsesion.TabIndex = 6;
+            this.btncerrarsesion.Text = "Cerrar sesión";
+            this.btncerrarsesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btncerrarsesion.UseVisualStyleBackColor = false;
+            this.btncerrarsesion.Click += new System.EventHandler(this.btncerrarsesion_Click);
+            //
             // submenunegocio
             // 
             this.submenunegocio.Name = "submenunegocio";
@@ -317,6 +339,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1511, 773);
+            this.Controls.Add(this.btncerrarsesion);
             this.Controls.Add(this.lblusuario);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.contenedor);
@@ -351,6 +374,7 @@
         private System.Windows.Forms.Panel contenedor;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblusuario;
+        private FontAwesome.Sharp.IconButton btncerrarsesion;
         private FontAwesome.Sharp.IconMenuItem submenucategoria;
         private FontAwesome.Sharp.IconMenuItem submenuproducto;
         private FontAwesome.Sharp.IconMenuItem submenuregistrarventa;

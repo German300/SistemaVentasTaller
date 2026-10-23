@@ -12,9 +12,9 @@ namespace CapaPresentacion
     // Menú principal: arriba el menú, abajo el panel "contenedor" donde se abre cada pantalla
     public partial class Inicio : Form
     {
-        private static Usuario usuarioActual;
-        private static IconMenuItem MenuActivo = null;
-        private static Form FormularioActivo = null;
+        private Usuario usuarioActual;
+        private IconMenuItem MenuActivo = null;
+        private Form FormularioActivo = null;
 
         // recibe el usuario que inició sesión en el Login
         public Inicio(Usuario objusuario)
@@ -125,6 +125,15 @@ namespace CapaPresentacion
         private void menureportes_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmReportes());
+        }
+
+        // al cerrar esta ventana el Login vuelve a aparecer (ver Login.frm_closing)
+        private void btncerrarsesion_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Desea cerrar sesión?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }
