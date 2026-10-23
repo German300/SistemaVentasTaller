@@ -137,7 +137,6 @@
             this.menuventas.Size = new System.Drawing.Size(152, 74);
             this.menuventas.Text = "Ventas";
             this.menuventas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.menuventas.Click += new System.EventHandler(this.menuventas_Click);
             // 
             // submenuregistrarventa
             // 

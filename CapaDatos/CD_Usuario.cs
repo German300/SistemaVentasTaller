@@ -64,7 +64,55 @@ namespace CapaDatos
             return lista;
         }
 
+        // Busca el usuario activo con ese documento y esa clave. Si no existe devuelve null.
+        public Usuario Login(string documento, string clave)
+        {
+            Usuario usuario = null;
 
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = @"select u.IdUsuario, u.Documento, u.NombreCompleto, u.Correo, u.Estado, r.IdRol, r.Descripcion
+                                     from USUARIO u
+                                     inner join ROL r on r.IdRol = u.IdRol
+                                     where u.Documento = @documento and u.Clave = @clave and u.Estado = 1";
+
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.Parameters.AddWithValue("@documento", documento);
+                    cmd.Parameters.AddWithValue("@clave", clave);
+                    cmd.CommandType = CommandType.Text;
+
+                    oconexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            usuario = new Usuario
+                            {
+                                IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
+                                Documento = dr["Documento"].ToString(),
+                                NombreCompleto = dr["NombreCompleto"].ToString(),
+                                Correo = dr["Correo"].ToString(),
+                                Estado = Convert.ToBoolean(dr["Estado"]),
+                                oRol = new Rol()
+                                {
+                                    IdRol = Convert.ToInt32(dr["IdRol"]),
+                                    Descripcion = dr["Descripcion"].ToString()
+                                }
+                            };
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    usuario = null;
+                }
+            }
+
+            return usuario;
+        }
 
          // procedimientos almacenados de la bd
 
