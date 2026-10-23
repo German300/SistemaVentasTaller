@@ -1,12 +1,8 @@
-﻿using CapaEntidad;
+using CapaEntidad;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace CapaDatos
 {
@@ -20,12 +16,9 @@ namespace CapaDatos
             {
                 try
                 {
-                    StringBuilder query = new StringBuilder();
+                    string query = "select IdRol, Descripcion from ROL";
 
-                    query.AppendLine("SELECT IdRol, Descripcion FROM ROL ");
-
-
-                    SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
 
                     oconexion.Open();
@@ -37,20 +30,18 @@ namespace CapaDatos
                             lista.Add(new Rol()
                             {
                                 IdRol = Convert.ToInt32(dr["IdRol"]),
-                                Descripcion = dr["Descripcion"].ToString(),
-
+                                Descripcion = dr["Descripcion"].ToString()
                             });
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     lista = new List<Rol>();
-
                 }
             }
+
             return lista;
         }
-
     }
 }

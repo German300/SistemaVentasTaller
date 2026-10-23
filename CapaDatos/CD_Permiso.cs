@@ -1,13 +1,14 @@
-﻿using System;
+using CapaEntidad;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using CapaEntidad;
 
 namespace CapaDatos
 {
     public class CD_Permiso
     {
+        // Menús que puede ver el usuario según su rol (tablas PERMISO y ROL_PERMISO)
         public List<Permiso> Listar(int idUsuario)
         {
             List<Permiso> lista = new List<Permiso>();
@@ -16,12 +17,10 @@ namespace CapaDatos
             {
                 try
                 {
-                    // Consulta corregida para usar tus nombres exactos con guion bajo (Id_rol, Id_permiso)
-                    string query = @"
-                        SELECT p.NombreMenu FROM Rol_Permiso rp
-                        INNER JOIN Permiso p ON rp.Id_permiso = p.IdPermiso
-                        INNER JOIN USUARIO u ON u.IdRol = rp.Id_rol
-                        WHERE u.IdUsuario = @idusuario";
+                    string query = @"select p.NombreMenu from Rol_Permiso rp
+                                     inner join Permiso p on rp.Id_permiso = p.IdPermiso
+                                     inner join USUARIO u on u.IdRol = rp.Id_rol
+                                     where u.IdUsuario = @idusuario";
 
                     SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.Parameters.AddWithValue("@idusuario", idUsuario);
@@ -40,12 +39,13 @@ namespace CapaDatos
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    // Si hay un error, devolvemos la lista vacía para que no rompa la app
+                    // si hay un error se devuelve la lista vacía (el usuario no ve ningún menú)
                     lista = new List<Permiso>();
                 }
             }
+
             return lista;
         }
     }

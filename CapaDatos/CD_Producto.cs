@@ -1,13 +1,8 @@
 ﻿using CapaEntidad;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CapaDatos
 {
@@ -21,12 +16,14 @@ namespace CapaDatos
             {
                 try
                 {
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("select p.IdProducto, p.Codigo, p.Nombre, p.Descripcion, c.IdCategoria, c.Descripcion[DescripcionCategoria], p.Stock, p.PrecioCompra, p.PrecioVenta, p.Estado");
-                    query.AppendLine("from PRODUCTO p");
-                    query.AppendLine("left join CATEGORIA c on c.IdCategoria = p.IdCategoria");
+                    // left join: si el producto no tiene categoría igual se lista
+                    string query = @"select p.IdProducto, p.Codigo, p.Nombre, p.Descripcion,
+                                            c.IdCategoria, c.Descripcion [DescripcionCategoria],
+                                            p.Stock, p.PrecioCompra, p.PrecioVenta, p.Estado
+                                     from PRODUCTO p
+                                     left join CATEGORIA c on c.IdCategoria = p.IdCategoria";
 
-                    SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
 
                     oconexion.Open();
@@ -35,15 +32,16 @@ namespace CapaDatos
                     {
                         while (dr.Read())
                         {
-                            lista.Add(new Producto
+                            // si una columna viene vacía (NULL) se usa "" o 0
+                            lista.Add(new Producto()
                             {
                                 IdProducto = Convert.ToInt32(dr["IdProducto"]),
                                 Codigo = dr["Codigo"] != DBNull.Value ? dr["Codigo"].ToString() : "",
                                 Nombre = dr["Nombre"] != DBNull.Value ? dr["Nombre"].ToString() : "",
                                 Descripcion = dr["Descripcion"] != DBNull.Value ? dr["Descripcion"].ToString() : "",
                                 Stock = dr["Stock"] != DBNull.Value ? Convert.ToInt32(dr["Stock"]) : 0,
-                                PrecioVenta = dr["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(dr["PrecioVenta"]) : 0,
                                 PrecioCompra = dr["PrecioCompra"] != DBNull.Value ? Convert.ToDecimal(dr["PrecioCompra"]) : 0,
+                                PrecioVenta = dr["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(dr["PrecioVenta"]) : 0,
                                 Estado = dr["Estado"] != DBNull.Value && Convert.ToBoolean(dr["Estado"]),
                                 oCategoria = new Categoria()
                                 {
@@ -56,6 +54,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
+                    // se relanza el error para ver exactamente qué falló en la base
                     throw new Exception("Error al consultar productos: " + ex.Message);
                 }
             }
@@ -63,23 +62,20 @@ namespace CapaDatos
             return lista;
         }
 
-
-
-        // procedimientos almacenados de la bd
-
+        // Devuelve el id del producto nuevo (0 si no se pudo registrar).
+        // El código del producto lo genera la base de datos.
         public int Registrar(Producto obj, out string Mensaje)
         {
-
-
-            int idProductogenerado = 0;
+            int idProductoGenerado = 0;
             Mensaje = string.Empty;
 
             try
             {
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
-                    // el procedimiento almacenado de la bd para registrar un nuevo Producto, con sus parametros
-                    SqlCommand cmd = new SqlCommand("sp_RegistrarProducto".ToString(), oconexion);
+                    SqlCommand cmd = new SqlCommand("sp_RegistrarProducto", oconexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     cmd.Parameters.AddWithValue("Nombre", obj.Nombre);
                     cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
                     cmd.Parameters.AddWithValue("IdCategoria", obj.oCategoria.IdCategoria);
@@ -88,34 +84,27 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Stock", obj.Stock);
                     cmd.Parameters.AddWithValue("Estado", obj.Estado);
 
-
-                    // parametros de salida del procedimiento almacenado de la bd
-                    // para obtener el id del Producto registrado y el mensaje de error si es que hay
+                    // lo que devuelve el SP
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                    cmd.CommandType = CommandType.StoredProcedure;
-
                     oconexion.Open();
                     cmd.ExecuteNonQuery();
-                    // obtenemos el id del Producto registrado y el mensaje de error si es que hay
-                    idProductogenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
+
+                    idProductoGenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
                     Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
-
                 }
-
             }
             catch (Exception ex)
             {
-                idProductogenerado = 0;
+                idProductoGenerado = 0;
                 Mensaje = ex.Message;
             }
-            return idProductogenerado;
+
+            return idProductoGenerado;
         }
 
-
-
-
+        // El stock no se edita acá: solo cambia con compras y ventas
         public bool Editar(Producto obj, out string Mensaje)
         {
             bool respuesta = false;
@@ -125,8 +114,9 @@ namespace CapaDatos
             {
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
-                    // el procedimiento almacenado de la bd para editar un Producto, con sus parametros
-                    SqlCommand cmd = new SqlCommand("sp_ModificarProducto".ToString(), oconexion);
+                    SqlCommand cmd = new SqlCommand("sp_ModificarProducto", oconexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     cmd.Parameters.AddWithValue("IdProducto", obj.IdProducto);
                     cmd.Parameters.AddWithValue("Nombre", obj.Nombre);
                     cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
@@ -135,24 +125,17 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("PrecioVenta", obj.PrecioVenta);
                     cmd.Parameters.AddWithValue("Estado", obj.Estado);
 
-
-                    // parametros de salida del procedimiento almacenado de la bd
-                    // para obtener la respuesta del procedimiento y el mensaje de error si es que hay
+                    // lo que devuelve el SP
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
-
-                    cmd.CommandType = CommandType.StoredProcedure;
 
                     oconexion.Open();
                     cmd.ExecuteNonQuery();
 
-                    // obtenemos la respuesta del procedimiento y el mensaje de error si es que hay
                     respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
                     Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
-
                 }
             }
-
             catch (Exception ex)
             {
                 respuesta = false;
@@ -162,15 +145,9 @@ namespace CapaDatos
             return respuesta;
         }
 
-
-
-
-
-
+        // No borra el producto: el SP lo marca como inactivo (baja lógica)
         public bool Eliminar(Producto obj, out string Mensaje)
         {
-
-
             bool respuesta = false;
             Mensaje = string.Empty;
 
@@ -178,39 +155,29 @@ namespace CapaDatos
             {
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
-                    // el procedimiento almacenado de la bd para eliminar un Producto, con sus parametros
-                    SqlCommand cmd = new SqlCommand("SP_EliminarProducto".ToString(), oconexion);
+                    SqlCommand cmd = new SqlCommand("SP_EliminarProducto", oconexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     cmd.Parameters.AddWithValue("IdProducto", obj.IdProducto);
 
-
-                    // parametros de salida del procedimiento almacenado de la bd
-                    // para obtener la respuesta del procedimiento y el mensaje de error si es que hay
+                    // lo que devuelve el SP
                     cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
-
-                    cmd.CommandType = CommandType.StoredProcedure;
 
                     oconexion.Open();
                     cmd.ExecuteNonQuery();
 
-                    // obtenemos la respuesta del procedimiento y el mensaje de error si es que hay
                     respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
                     Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
-
                 }
-
             }
-
-
             catch (Exception ex)
             {
                 respuesta = false;
                 Mensaje = ex.Message;
             }
+
             return respuesta;
-
         }
-
     }
 }
-

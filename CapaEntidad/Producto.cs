@@ -1,10 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.SymbolStore;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace CapaEntidad
 {
     public class Producto
@@ -17,8 +10,7 @@ namespace CapaEntidad
         public int Stock { get; set; }
         public decimal PrecioCompra { get; set; }
         public decimal PrecioVenta { get; set; }
-         public bool Estado { get; set; }
+        public bool Estado { get; set; }
         public string FechaRegistro { get; set; }
-
     }
 }

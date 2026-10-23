@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace CapaDatos
 {
-     public class Conexion
+    // La cadena de conexión se lee del archivo App.config (nombre "cadena_conexion")
+    public class Conexion
     {
         public static string cadena = ConfigurationManager.ConnectionStrings["cadena_conexion"].ToString();
     }

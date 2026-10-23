@@ -26,7 +26,7 @@ namespace CapaPresentacion
         private void Inicio_Load(object sender, EventArgs e)
         {
             // menús que el rol del usuario tiene permitidos (tablas PERMISO y ROL_PERMISO)
-            List<Permiso> ListaPermisos = new CN_PERMISO().Listar(usuarioActual.IdUsuario);
+            List<Permiso> ListaPermisos = new CN_Permiso().Listar(usuarioActual.IdUsuario);
 
             // se muestra cada menú solo si su Name está en la lista de permisos
             foreach (IconMenuItem iconMenu in menu.Items)

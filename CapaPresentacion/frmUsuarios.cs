@@ -14,7 +14,7 @@ namespace CapaPresentacion
         // el usuario logueado no puede darse de baja a sí mismo
         private readonly int _idUsuarioActual;
 
-        public frmUsuarios(int idUsuarioActual = 0)
+        public frmUsuarios(int idUsuarioActual)
         {
             InitializeComponent();
             _idUsuarioActual = idUsuarioActual;

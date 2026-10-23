@@ -1,11 +1,6 @@
 ﻿using CapaDatos;
 using CapaEntidad;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace CapaNegocio
 {
@@ -25,38 +20,44 @@ namespace CapaNegocio
             {
                 return null;
             }
+
             return objcd_usuario.Login(documento, clave);
         }
 
         public int Registrar(Usuario obj, out string Mensaje)
         {
-            Mensaje = string.Empty;
-         
-            if (obj.Documento == "")
-            {
-                Mensaje += "El documento es obligatorio\n";
-            }
-            if (obj.NombreCompleto == "")
-            {
-                Mensaje += "El nombre completo es obligatorio\n";
-            }
-            if (obj.Clave == "")
-            {
-                Mensaje += "La clave es obligatoria\n";
-            }
+            Mensaje = Validar(obj);
+
             if (Mensaje != string.Empty)
             {
                 return 0;
             }
-            else
-            {
-                return objcd_usuario.Registrar(obj, out Mensaje);
-            }
+
+            return objcd_usuario.Registrar(obj, out Mensaje);
         }
 
         public bool Editar(Usuario obj, out string Mensaje)
         {
-           Mensaje = string.Empty;
+            Mensaje = Validar(obj);
+
+            if (Mensaje != string.Empty)
+            {
+                return false;
+            }
+
+            return objcd_usuario.Editar(obj, out Mensaje);
+        }
+
+        public bool Eliminar(Usuario obj, out string Mensaje)
+        {
+            return objcd_usuario.Eliminar(obj, out Mensaje);
+        }
+
+        // Devuelve los errores encontrados, o "" si está todo bien
+        private string Validar(Usuario obj)
+        {
+            string Mensaje = string.Empty;
+
             if (obj.Documento == "")
             {
                 Mensaje += "El documento es obligatorio\n";
@@ -69,20 +70,8 @@ namespace CapaNegocio
             {
                 Mensaje += "La clave es obligatoria\n";
             }
-            if (Mensaje != string.Empty)
-            {
-                return false;
-            }
-            else
-            {
-                return objcd_usuario.Editar(obj, out Mensaje);
-            }
-        }
 
-
-        public bool Eliminar(Usuario obj, out string Mensaje)
-            {
-                return objcd_usuario.Eliminar(obj, out Mensaje);
+            return Mensaje;
         }
     }
 }

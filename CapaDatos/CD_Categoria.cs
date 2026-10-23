@@ -1,11 +1,8 @@
-﻿using CapaEntidad;
+using CapaEntidad;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CapaDatos
 {
@@ -19,9 +16,9 @@ namespace CapaDatos
             {
                 try
                 {
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("select IdCategoria, Descripcion, Estado from CATEGORIA");
-                    SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
+                    string query = "select IdCategoria, Descripcion, Estado from CATEGORIA";
+
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
 
                     oconexion.Open();
@@ -30,7 +27,7 @@ namespace CapaDatos
                     {
                         while (dr.Read())
                         {
-                            lista.Add(new Categoria
+                            lista.Add(new Categoria()
                             {
                                 IdCategoria = Convert.ToInt32(dr["IdCategoria"]),
                                 Descripcion = dr["Descripcion"].ToString(),
@@ -39,21 +36,19 @@ namespace CapaDatos
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     lista = new List<Categoria>();
-                    
                 }
             }
 
             return lista;
         }
 
-
-        // METODO REGISTRAR
+        // Devuelve el id de la categoría nueva (0 si no se pudo registrar)
         public int Registrar(Categoria obj, out string Mensaje)
         {
-            int idCategoriagenerado = 0;
+            int idCategoriaGenerado = 0;
             Mensaje = string.Empty;
 
             try
@@ -61,31 +56,31 @@ namespace CapaDatos
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
                     SqlCommand cmd = new SqlCommand("SP_RegistrarCategoria", oconexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
                     cmd.Parameters.AddWithValue("Estado", obj.Estado);
 
+                    // lo que devuelve el SP
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
-                    cmd.CommandType = CommandType.StoredProcedure;
 
                     oconexion.Open();
                     cmd.ExecuteNonQuery();
 
-                    idCategoriagenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
+                    idCategoriaGenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
                     Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
                 }
             }
             catch (Exception ex)
             {
-                idCategoriagenerado = 0;
+                idCategoriaGenerado = 0;
                 Mensaje = ex.Message;
             }
 
-            return idCategoriagenerado;
+            return idCategoriaGenerado;
         }
 
-
-        // METODO EDITAR
         public bool Editar(Categoria obj, out string Mensaje)
         {
             bool respuesta = false;
@@ -96,12 +91,15 @@ namespace CapaDatos
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
                     SqlCommand cmd = new SqlCommand("sp_EditarCategoria", oconexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     cmd.Parameters.AddWithValue("IdCategoria", obj.IdCategoria);
                     cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
                     cmd.Parameters.AddWithValue("Estado", obj.Estado);
+
+                    // lo que devuelve el SP
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
-                    cmd.CommandType = CommandType.StoredProcedure;
 
                     oconexion.Open();
                     cmd.ExecuteNonQuery();
@@ -115,10 +113,11 @@ namespace CapaDatos
                 respuesta = false;
                 Mensaje = ex.Message;
             }
+
             return respuesta;
         }
 
-        // METODO ELIMINAR 
+        // No borra la categoría: el SP la marca como inactiva (baja lógica)
         public bool Eliminar(Categoria obj, out string Mensaje)
         {
             bool respuesta = false;
@@ -128,12 +127,14 @@ namespace CapaDatos
             {
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
                 {
-                 
                     SqlCommand cmd = new SqlCommand("sp_EliminarCategoria", oconexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     cmd.Parameters.AddWithValue("IdCategoria", obj.IdCategoria);
+
+                    // lo que devuelve el SP
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
-                    cmd.CommandType = CommandType.StoredProcedure;
 
                     oconexion.Open();
                     cmd.ExecuteNonQuery();

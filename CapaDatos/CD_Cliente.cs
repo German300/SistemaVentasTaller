@@ -1,9 +1,8 @@
-﻿using CapaEntidad;
+using CapaEntidad;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace CapaDatos
 {
@@ -17,10 +16,9 @@ namespace CapaDatos
             {
                 try
                 {
-                    StringBuilder query = new StringBuilder();
-                    query.AppendLine("select IdCliente, Documento, NombreCompleto, Correo, Telefono, Estado from CLIENTE");
+                    string query = "select IdCliente, Documento, NombreCompleto, Correo, Telefono, Estado from CLIENTE";
 
-                    SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
 
                     oconexion.Open();
@@ -29,7 +27,7 @@ namespace CapaDatos
                     {
                         while (dr.Read())
                         {
-                            lista.Add(new Cliente
+                            lista.Add(new Cliente()
                             {
                                 IdCliente = Convert.ToInt32(dr["IdCliente"]),
                                 Documento = dr["Documento"].ToString(),
@@ -43,16 +41,18 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
-                    // Relanzamos la excepción para saber exactamente cuál fue el error de BD
+                    // se relanza el error para ver exactamente qué falló en la base
                     throw new Exception("Error al consultar clientes: " + ex.Message);
                 }
             }
+
             return lista;
         }
 
+        // Devuelve el id del cliente nuevo (0 si no se pudo registrar)
         public int Registrar(Cliente obj, out string Mensaje)
         {
-            int idClientegenerado = 0;
+            int idClienteGenerado = 0;
             Mensaje = string.Empty;
 
             try
@@ -68,23 +68,24 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Telefono", obj.Telefono ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("Estado", obj.Estado);
 
-                    // Parámetros de salida 
+                    // lo que devuelve el SP
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                     oconexion.Open();
                     cmd.ExecuteNonQuery();
 
-                    idClientegenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
+                    idClienteGenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
                     Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
                 }
             }
             catch (Exception ex)
             {
-                idClientegenerado = 0;
+                idClienteGenerado = 0;
                 Mensaje = ex.Message;
             }
-            return idClientegenerado;
+
+            return idClienteGenerado;
         }
 
         public bool Editar(Cliente obj, out string Mensaje)
@@ -106,6 +107,7 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Telefono", obj.Telefono ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("Estado", obj.Estado);
 
+                    // lo que devuelve el SP
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
@@ -121,9 +123,11 @@ namespace CapaDatos
                 respuesta = false;
                 Mensaje = ex.Message;
             }
+
             return respuesta;
         }
 
+        // No borra el cliente: el SP lo marca como inactivo (baja lógica)
         public bool Eliminar(Cliente obj, out string Mensaje)
         {
             bool respuesta = false;
@@ -138,7 +142,7 @@ namespace CapaDatos
 
                     cmd.Parameters.AddWithValue("IdCliente", obj.IdCliente);
 
-                    // Parámetros de salida que concuerdan con SP_EliminarCliente
+                    // lo que devuelve el SP
                     cmd.Parameters.Add("Respuesta", SqlDbType.Bit).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
@@ -154,6 +158,7 @@ namespace CapaDatos
                 respuesta = false;
                 Mensaje = ex.Message;
             }
+
             return respuesta;
         }
     }

@@ -125,7 +125,6 @@ namespace CapaPresentacion
                     }
 
                     pdfdoc.Close();
-                    stream.Close();
                     MessageBox.Show("PDF generado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
