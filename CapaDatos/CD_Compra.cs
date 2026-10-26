@@ -165,5 +165,63 @@ namespace CapaDatos
 
             return lista;
         }
+
+        // Productos comprados entre dos fechas (se toma solo el día, sin la hora)
+        public List<ReporteCompra> Reporte(DateTime fechainicio, DateTime fechafin)
+        {
+            List<ReporteCompra> lista = new List<ReporteCompra>();
+
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = @"select convert(char(10), c.FechaRegistro, 103) [FechaRegistro],
+                                            c.TipoDocumento, c.NumeroDocumento, pr.RazonSocial,
+                                            u.NombreCompleto, p.Nombre, ca.Descripcion [Categoria],
+                                            dc.PrecioCompra, dc.Cantidad, dc.MontoTotal
+                                     from COMPRA c
+                                     inner join USUARIO u on u.IdUsuario = c.IdUsuario
+                                     inner join PROVEEDOR pr on pr.IdProveedor = c.IdProveedor
+                                     inner join DETALLE_COMPRA dc on dc.IdCompra = c.IdCompra
+                                     inner join PRODUCTO p on p.IdProducto = dc.IdProducto
+                                     left join CATEGORIA ca on ca.IdCategoria = p.IdCategoria
+                                     where convert(date, c.FechaRegistro) between @fechainicio and @fechafin
+                                     order by c.FechaRegistro";
+
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.Parameters.AddWithValue("@fechainicio", fechainicio.Date);
+                    cmd.Parameters.AddWithValue("@fechafin", fechafin.Date);
+                    cmd.CommandType = CommandType.Text;
+
+                    oconexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new ReporteCompra()
+                            {
+                                FechaRegistro = dr["FechaRegistro"].ToString(),
+                                TipoDocumento = dr["TipoDocumento"].ToString(),
+                                NumeroDocumento = dr["NumeroDocumento"].ToString(),
+                                RazonSocial = dr["RazonSocial"].ToString(),
+                                NombreUsuario = dr["NombreCompleto"].ToString(),
+                                NombreProducto = dr["Nombre"].ToString(),
+                                Categoria = dr["Categoria"].ToString(),
+                                PrecioCompra = Convert.ToDecimal(dr["PrecioCompra"]),
+                                Cantidad = Convert.ToInt32(dr["Cantidad"]),
+                                SubTotal = Convert.ToDecimal(dr["MontoTotal"])
+                            });
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    lista = new List<ReporteCompra>();
+                }
+            }
+
+            return lista;
+        }
     }
 }

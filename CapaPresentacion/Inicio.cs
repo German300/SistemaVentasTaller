@@ -36,10 +36,6 @@ namespace CapaPresentacion
                 iconMenu.Visible = encontrado;
             }
 
-            // pantallas que todavía no están terminadas
-            menureportes.Visible = false;
-         //   submenuverdetalleventa.Visible = false;
-
             lblusuario.Text = usuarioActual.NombreCompleto;
         }
 
@@ -113,24 +109,19 @@ namespace CapaPresentacion
             AbrirFormulario(menucompras, new frmDetalleCompra());
         }
 
-        private void Menuclientes_Click(object sender, EventArgs e)
+        private void menuclientes_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmClientes());
         }
 
-        private void Menuproveedores_Click(object sender, EventArgs e)
+        private void menuproveedores_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmProveedores());
         }
 
-        private void Menureportes_Click(object sender, EventArgs e)
+        private void menureportes_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmReportes());
-        }
-
-        private void Submenunegocio_Click(object sender, EventArgs e)
-        {
-            AbrirFormulario(menumantenimiento, new frmNegocio());
         }
     }
 }
