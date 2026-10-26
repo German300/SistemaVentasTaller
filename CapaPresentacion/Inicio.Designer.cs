@@ -1,4 +1,7 @@
-﻿namespace CapaPresentacion
+﻿using System;
+using System.Windows.Forms;
+
+namespace CapaPresentacion
 {
     partial class Inicio
     {
@@ -48,6 +51,7 @@
             this.contenedor = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.lblusuario = new System.Windows.Forms.Label();
+            this.btncerrarsesion = new FontAwesome.Sharp.IconButton();
             this.submenunegocio = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -206,7 +210,7 @@
             this.menuclientes.Size = new System.Drawing.Size(80, 74);
             this.menuclientes.Text = "Clientes";
             this.menuclientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.menuclientes.Click += new System.EventHandler(this.menuclientes_Click);
+//            this.menuclientes.Click += new System.EventHandler(this.menuclientes_Click);
             // 
             // menuproveedores
             // 
@@ -220,7 +224,7 @@
             this.menuproveedores.Size = new System.Drawing.Size(152, 74);
             this.menuproveedores.Text = "Proveedores";
             this.menuproveedores.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.menuproveedores.Click += new System.EventHandler(this.menuproveedores_Click);
+//            this.menuproveedores.Click += new System.EventHandler(this.menuproveedores_Click);
             // 
             // menureportes
             // 
@@ -234,7 +238,7 @@
             this.menureportes.Size = new System.Drawing.Size(80, 74);
             this.menureportes.Text = "Reportes";
             this.menureportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.menureportes.Click += new System.EventHandler(this.menureportes_Click);
+//            this.menureportes.Click += new System.EventHandler(this.menureportes_Click);
             // 
             // menuacercade
             // 
@@ -304,7 +308,28 @@
             this.lblusuario.Size = new System.Drawing.Size(81, 20);
             this.lblusuario.TabIndex = 5;
             this.lblusuario.Text = "lblusuario";
-            // 
+            //
+            // btncerrarsesion
+            //
+            this.btncerrarsesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btncerrarsesion.BackColor = System.Drawing.Color.White;
+            this.btncerrarsesion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btncerrarsesion.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btncerrarsesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btncerrarsesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btncerrarsesion.IconChar = FontAwesome.Sharp.IconChar.RightFromBracket;
+            this.btncerrarsesion.IconColor = System.Drawing.Color.Black;
+            this.btncerrarsesion.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btncerrarsesion.IconSize = 18;
+            this.btncerrarsesion.Location = new System.Drawing.Point(1340, 28);
+            this.btncerrarsesion.Name = "btncerrarsesion";
+            this.btncerrarsesion.Size = new System.Drawing.Size(150, 32);
+            this.btncerrarsesion.TabIndex = 6;
+            this.btncerrarsesion.Text = "Cerrar sesión";
+            this.btncerrarsesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btncerrarsesion.UseVisualStyleBackColor = false;
+            this.btncerrarsesion.Click += new System.EventHandler(this.btncerrarsesion_Click);
+            //
             // submenunegocio
             // 
             this.submenunegocio.Name = "submenunegocio";
@@ -317,6 +342,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1511, 773);
+            this.Controls.Add(this.btncerrarsesion);
             this.Controls.Add(this.lblusuario);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.contenedor);
@@ -335,6 +361,14 @@
 
         }
 
+        private void btncerrarsesion_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Desea cerrar sesión?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
         #endregion
 
         private System.Windows.Forms.MenuStrip menu;
@@ -351,6 +385,7 @@
         private System.Windows.Forms.Panel contenedor;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblusuario;
+        private FontAwesome.Sharp.IconButton btncerrarsesion;
         private FontAwesome.Sharp.IconMenuItem submenucategoria;
         private FontAwesome.Sharp.IconMenuItem submenuproducto;
         private FontAwesome.Sharp.IconMenuItem submenuregistrarventa;

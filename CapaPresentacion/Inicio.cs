@@ -15,11 +15,12 @@ namespace CapaPresentacion
         private static Usuario usuarioActual;
         private static IconMenuItem MenuActivo = null;
         private static Form FormularioActivo = null;
-
-        // recibe el usuario que inició sesión en el Login
-        public Inicio(Usuario objusuario)
+        public Inicio(Usuario objusuario = null)
         {
-            usuarioActual = objusuario;
+            if (objusuario == null)
+                usuarioActual = new Usuario() { NombreCompleto = "ADMIN PREDEFINIDO", IdUsuario = 1 };
+            else
+                usuarioActual = objusuario;
             InitializeComponent();
         }
 
@@ -37,7 +38,7 @@ namespace CapaPresentacion
 
             // pantallas que todavía no están terminadas
             menureportes.Visible = false;
-            submenuverdetalleventa.Visible = false;
+         //   submenuverdetalleventa.Visible = false;
 
             lblusuario.Text = usuarioActual.NombreCompleto;
         }
@@ -112,19 +113,24 @@ namespace CapaPresentacion
             AbrirFormulario(menucompras, new frmDetalleCompra());
         }
 
-        private void menuclientes_Click(object sender, EventArgs e)
+        private void Menuclientes_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmClientes());
         }
 
-        private void menuproveedores_Click(object sender, EventArgs e)
+        private void Menuproveedores_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmProveedores());
         }
 
-        private void menureportes_Click(object sender, EventArgs e)
+        private void Menureportes_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmReportes());
+        }
+
+        private void Submenunegocio_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menumantenimiento, new frmNegocio());
         }
     }
 }
