@@ -36,6 +36,7 @@ namespace CapaPresentacion
             this.menumantenimiento = new FontAwesome.Sharp.IconMenuItem();
             this.submenucategoria = new FontAwesome.Sharp.IconMenuItem();
             this.submenuproducto = new FontAwesome.Sharp.IconMenuItem();
+            this.submenunegocio = new System.Windows.Forms.ToolStripMenuItem();
             this.menuventas = new FontAwesome.Sharp.IconMenuItem();
             this.submenuregistrarventa = new FontAwesome.Sharp.IconMenuItem();
             this.submenuverdetalleventa = new FontAwesome.Sharp.IconMenuItem();
@@ -52,7 +53,6 @@ namespace CapaPresentacion
             this.label2 = new System.Windows.Forms.Label();
             this.lblusuario = new System.Windows.Forms.Label();
             this.btncerrarsesion = new FontAwesome.Sharp.IconButton();
-            this.submenunegocio = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,7 +112,7 @@ namespace CapaPresentacion
             this.submenucategoria.IconColor = System.Drawing.Color.Black;
             this.submenucategoria.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.submenucategoria.Name = "submenucategoria";
-            this.submenucategoria.Size = new System.Drawing.Size(224, 26);
+            this.submenucategoria.Size = new System.Drawing.Size(157, 26);
             this.submenucategoria.Text = "Categoria";
             this.submenucategoria.Click += new System.EventHandler(this.submenucategoria_Click);
             // 
@@ -122,9 +122,16 @@ namespace CapaPresentacion
             this.submenuproducto.IconColor = System.Drawing.Color.Black;
             this.submenuproducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.submenuproducto.Name = "submenuproducto";
-            this.submenuproducto.Size = new System.Drawing.Size(224, 26);
+            this.submenuproducto.Size = new System.Drawing.Size(157, 26);
             this.submenuproducto.Text = "Producto";
             this.submenuproducto.Click += new System.EventHandler(this.submenuproducto_Click);
+            // 
+            // submenunegocio
+            // 
+            this.submenunegocio.Name = "submenunegocio";
+            this.submenunegocio.Size = new System.Drawing.Size(157, 26);
+            this.submenunegocio.Text = "Negocio";
+            this.submenunegocio.Click += new System.EventHandler(this.submenunegocio_Click);
             // 
             // menuventas
             // 
@@ -210,7 +217,7 @@ namespace CapaPresentacion
             this.menuclientes.Size = new System.Drawing.Size(80, 74);
             this.menuclientes.Text = "Clientes";
             this.menuclientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-//            this.menuclientes.Click += new System.EventHandler(this.menuclientes_Click);
+            this.menuclientes.Click += new System.EventHandler(this.Menuclientes_Click);
             // 
             // menuproveedores
             // 
@@ -224,7 +231,7 @@ namespace CapaPresentacion
             this.menuproveedores.Size = new System.Drawing.Size(152, 74);
             this.menuproveedores.Text = "Proveedores";
             this.menuproveedores.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-//            this.menuproveedores.Click += new System.EventHandler(this.menuproveedores_Click);
+            this.menuproveedores.Click += new System.EventHandler(this.Menuproveedores_Click);
             // 
             // menureportes
             // 
@@ -238,7 +245,6 @@ namespace CapaPresentacion
             this.menureportes.Size = new System.Drawing.Size(80, 74);
             this.menureportes.Text = "Reportes";
             this.menureportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-//            this.menureportes.Click += new System.EventHandler(this.menureportes_Click);
             // 
             // menuacercade
             // 
@@ -308,9 +314,9 @@ namespace CapaPresentacion
             this.lblusuario.Size = new System.Drawing.Size(81, 20);
             this.lblusuario.TabIndex = 5;
             this.lblusuario.Text = "lblusuario";
-            //
+            // 
             // btncerrarsesion
-            //
+            // 
             this.btncerrarsesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btncerrarsesion.BackColor = System.Drawing.Color.White;
             this.btncerrarsesion.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -329,13 +335,6 @@ namespace CapaPresentacion
             this.btncerrarsesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btncerrarsesion.UseVisualStyleBackColor = false;
             this.btncerrarsesion.Click += new System.EventHandler(this.btncerrarsesion_Click);
-            //
-            // submenunegocio
-            // 
-            this.submenunegocio.Name = "submenunegocio";
-            this.submenunegocio.Size = new System.Drawing.Size(224, 26);
-            this.submenunegocio.Text = "Negocio";
-            this.submenunegocio.Click += new System.EventHandler(this.submenunegocio_Click);
             // 
             // Inicio
             // 
