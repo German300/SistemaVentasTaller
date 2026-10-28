@@ -102,6 +102,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAcercaDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,6 +253,9 @@
     <Compile Include="Utilidades\OpcionCombo.cs" />
     <Compile Include="Utilidades\TextoAyuda.cs" />
     <Compile Include="Utilidades\Teclado.cs" />
+    <EmbeddedResource Include="frmAcercaDe.resx">
+      <DependentUpon>frmAcercaDe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCategoria.resx">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
     </EmbeddedResource>
