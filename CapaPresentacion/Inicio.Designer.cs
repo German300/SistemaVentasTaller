@@ -217,7 +217,7 @@ namespace CapaPresentacion
             this.menuclientes.Size = new System.Drawing.Size(80, 74);
             this.menuclientes.Text = "Clientes";
             this.menuclientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.menuclientes.Click += new System.EventHandler(this.Menuclientes_Click);
+            this.menuclientes.Click += new System.EventHandler(this.menuclientes_Click);
             // 
             // menuproveedores
             // 
@@ -231,7 +231,7 @@ namespace CapaPresentacion
             this.menuproveedores.Size = new System.Drawing.Size(152, 74);
             this.menuproveedores.Text = "Proveedores";
             this.menuproveedores.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.menuproveedores.Click += new System.EventHandler(this.Menuproveedores_Click);
+            this.menuproveedores.Click += new System.EventHandler(this.menuproveedores_Click);
             // 
             // menureportes
             // 
@@ -245,6 +245,7 @@ namespace CapaPresentacion
             this.menureportes.Size = new System.Drawing.Size(80, 74);
             this.menureportes.Text = "Reportes";
             this.menureportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menureportes.Click += new System.EventHandler(this.menureportes_Click);
             // 
             // menuacercade
             // 

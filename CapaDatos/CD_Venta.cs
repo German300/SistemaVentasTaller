@@ -1,5 +1,6 @@
 using CapaEntidad;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -80,6 +81,155 @@ namespace CapaDatos
             }
 
             return respuesta;
+        }
+
+        public Venta ObtenerVenta(string numero)
+        {
+            Venta obj = new Venta();
+
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = @"select v.IdVenta, u.NombreCompleto, v.TipoDocumento,
+                                            v.NumeroDocumento, v.DocumentoCliente,
+                                            v.NombreCliente, v.MontoPago, v.MontoCambio,
+                                            v.MontoTotal,
+                                            convert(char(10), v.FechaRegistro, 103) [FechaRegistro]
+                                     from VENTA v
+                                     inner join USUARIO u on u.IdUsuario = v.IdUsuario
+                                     where v.NumeroDocumento = @numero
+                                        or v.DocumentoCliente = @numero
+                                     order by v.IdVenta desc";
+
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.Parameters.AddWithValue("@numero", numero);
+                    oconexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            obj = new Venta()
+                            {
+                                IdVenta = Convert.ToInt32(dr["IdVenta"]),
+                                oUsuario = new Usuario() { NombreCompleto = dr["NombreCompleto"].ToString() },
+                                TipoDocumento = dr["TipoDocumento"].ToString(),
+                                NumeroDocumento = dr["NumeroDocumento"].ToString(),
+                                DocumentoCliente = dr["DocumentoCliente"].ToString(),
+                                NombreCliente = dr["NombreCliente"].ToString(),
+                                MontoPago = Convert.ToDecimal(dr["MontoPago"]),
+                                MontoCambio = Convert.ToDecimal(dr["MontoCambio"]),
+                                MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
+                                FechaRegistro = dr["FechaRegistro"].ToString()
+                            };
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    obj = new Venta();
+                }
+            }
+
+            return obj;
+        }
+
+        public List<Detalle_Venta> ObtenerDetalleVenta(int idventa)
+        {
+            List<Detalle_Venta> lista = new List<Detalle_Venta>();
+
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = @"select p.Nombre, dv.PrecioVenta, dv.Cantidad, dv.Subtotal
+                                     from DETALLE_VENTA dv
+                                     inner join PRODUCTO p on p.IdProducto = dv.IdProducto
+                                     where dv.IdVenta = @idventa";
+
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.Parameters.AddWithValue("@idventa", idventa);
+                    oconexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new Detalle_Venta()
+                            {
+                                oProducto = new Producto() { Nombre = dr["Nombre"].ToString() },
+                                PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"]),
+                                Cantidad = Convert.ToInt32(dr["Cantidad"]),
+                                SubTotal = Convert.ToDecimal(dr["Subtotal"])
+                            });
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    lista = new List<Detalle_Venta>();
+                }
+            }
+
+            return lista;
+        }
+
+        // Productos vendidos entre dos fechas (se toma solo el día, sin la hora)
+        public List<ReporteVenta> Reporte(DateTime fechainicio, DateTime fechafin)
+        {
+            List<ReporteVenta> lista = new List<ReporteVenta>();
+
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = @"select convert(char(10), v.FechaRegistro, 103) [FechaRegistro],
+                                            v.TipoDocumento, v.NumeroDocumento, v.NombreCliente,
+                                            u.NombreCompleto, p.Nombre, ca.Descripcion [Categoria],
+                                            dv.PrecioVenta, dv.Cantidad, dv.Subtotal
+                                     from VENTA v
+                                     inner join USUARIO u on u.IdUsuario = v.IdUsuario
+                                     inner join DETALLE_VENTA dv on dv.IdVenta = v.IdVenta
+                                     inner join PRODUCTO p on p.IdProducto = dv.IdProducto
+                                     left join CATEGORIA ca on ca.IdCategoria = p.IdCategoria
+                                     where convert(date, v.FechaRegistro) between @fechainicio and @fechafin
+                                     order by v.FechaRegistro";
+
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.Parameters.AddWithValue("@fechainicio", fechainicio.Date);
+                    cmd.Parameters.AddWithValue("@fechafin", fechafin.Date);
+                    cmd.CommandType = CommandType.Text;
+
+                    oconexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new ReporteVenta()
+                            {
+                                FechaRegistro = dr["FechaRegistro"].ToString(),
+                                TipoDocumento = dr["TipoDocumento"].ToString(),
+                                NumeroDocumento = dr["NumeroDocumento"].ToString(),
+                                NombreCliente = dr["NombreCliente"].ToString(),
+                                NombreUsuario = dr["NombreCompleto"].ToString(),
+                                NombreProducto = dr["Nombre"].ToString(),
+                                Categoria = dr["Categoria"].ToString(),
+                                PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"]),
+                                Cantidad = Convert.ToInt32(dr["Cantidad"]),
+                                SubTotal = Convert.ToDecimal(dr["Subtotal"])
+                            });
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    lista = new List<ReporteVenta>();
+                }
+            }
+
+            return lista;
         }
     }
 }

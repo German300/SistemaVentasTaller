@@ -393,6 +393,7 @@
             this.btnbuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnbuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnbuscar.UseVisualStyleBackColor = true;
+            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
             // 
             // label26
             // 
@@ -403,7 +404,7 @@
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(130, 16);
             this.label26.TabIndex = 225;
-            this.label26.Text = "Numero Documento:";
+            this.label26.Text = "Venta o cliente:";
             // 
             // txtbusqueda
             // 
@@ -429,6 +430,7 @@
             this.btnborrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnborrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnborrar.UseVisualStyleBackColor = true;
+            this.btnborrar.Click += new System.EventHandler(this.btnborrar_Click);
             // 
             // label9
             // 

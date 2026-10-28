@@ -1,5 +1,7 @@
 ﻿using CapaDatos;
 using CapaEntidad;
+using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace CapaNegocio
@@ -16,6 +18,23 @@ namespace CapaNegocio
         public bool Registrar(Venta obj, DataTable DetalleVenta, out string Mensaje)
         {
             return objcd_venta.Registrar(obj, DetalleVenta, out Mensaje);
+        }
+
+        public Venta ObtenerVenta(string numero)
+        {
+            Venta oVenta = objcd_venta.ObtenerVenta(numero);
+
+            if (oVenta.IdVenta != 0)
+            {
+                oVenta.oDetalleVenta = objcd_venta.ObtenerDetalleVenta(oVenta.IdVenta);
+            }
+
+            return oVenta;
+        }
+
+        public List<ReporteVenta> Reporte(DateTime fechainicio, DateTime fechafin)
+        {
+            return objcd_venta.Reporte(fechainicio, fechafin);
         }
     }
 }

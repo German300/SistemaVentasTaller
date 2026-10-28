@@ -1,5 +1,7 @@
 ﻿using CapaDatos;
 using CapaEntidad;
+using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace CapaNegocio
@@ -29,6 +31,11 @@ namespace CapaNegocio
             }
 
             return oCompra;
+        }
+
+        public List<ReporteCompra> Reporte(DateTime fechainicio, DateTime fechafin)
+        {
+            return objcd_compra.Reporte(fechainicio, fechafin);
         }
     }
 }

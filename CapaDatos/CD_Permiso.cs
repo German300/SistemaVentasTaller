@@ -8,7 +8,7 @@ namespace CapaDatos
 {
     public class CD_Permiso
     {
-        // Menús que puede ver el usuario según su rol (tablas PERMISO y ROL_PERMISO)
+        // Menús que puede ver el usuario según su rol
         public List<Permiso> Listar(int idUsuario)
         {
             List<Permiso> lista = new List<Permiso>();
@@ -17,9 +17,10 @@ namespace CapaDatos
             {
                 try
                 {
-                    string query = @"select p.NombreMenu from Rol_Permiso rp
-                                     inner join Permiso p on rp.Id_permiso = p.IdPermiso
-                                     inner join USUARIO u on u.IdRol = rp.Id_rol
+                    // Consulta corregida basada en tu estructura real de la base de datos
+                    string query = @"select p.NombreMenu 
+                                     from Permiso p
+                                     inner join USUARIO u on u.IdRol = p.IdRol
                                      where u.IdUsuario = @idusuario";
 
                     SqlCommand cmd = new SqlCommand(query, oconexion);
@@ -41,7 +42,6 @@ namespace CapaDatos
                 }
                 catch (Exception)
                 {
-                    // si hay un error se devuelve la lista vacía (el usuario no ve ningún menú)
                     lista = new List<Permiso>();
                 }
             }
