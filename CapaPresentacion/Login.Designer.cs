@@ -42,68 +42,75 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.SteelBlue;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(78)))), ((int)(((byte)(121)))));
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(261, 276);
+            this.label1.Size = new System.Drawing.Size(300, 390);
             this.label1.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.SteelBlue;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(78)))), ((int)(((byte)(121)))));
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(12, 218);
+            this.label2.Location = new System.Drawing.Point(25, 255);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(231, 29);
+            this.label2.Size = new System.Drawing.Size(250, 30);
             this.label2.TabIndex = 1;
             this.label2.Text = "Sistema De Ventas";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // iconPictureBox1
             // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.SteelBlue;
+            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(78)))), ((int)(((byte)(121)))));
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Store;
             this.iconPictureBox1.IconColor = System.Drawing.Color.White;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 149;
-            this.iconPictureBox1.Location = new System.Drawing.Point(41, 66);
+            this.iconPictureBox1.IconSize = 165;
+            this.iconPictureBox1.Location = new System.Drawing.Point(67, 55);
             this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(163, 149);
+            this.iconPictureBox1.Size = new System.Drawing.Size(165, 165);
             this.iconPictureBox1.TabIndex = 2;
             this.iconPictureBox1.TabStop = false;
             // 
             // txtdocumento
             // 
-            this.txtdocumento.Location = new System.Drawing.Point(368, 66);
+            this.txtdocumento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.txtdocumento.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtdocumento.Location = new System.Drawing.Point(420, 105);
             this.txtdocumento.Name = "txtdocumento";
             this.txtdocumento.MaxLength = 8;
-            this.txtdocumento.Size = new System.Drawing.Size(222, 22);
+            this.txtdocumento.Size = new System.Drawing.Size(275, 27);
             this.txtdocumento.TabIndex = 3;
             // 
             // txtclave
             // 
-            this.txtclave.Location = new System.Drawing.Point(368, 156);
+            this.txtclave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.txtclave.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtclave.Location = new System.Drawing.Point(420, 185);
             this.txtclave.Name = "txtclave";
             this.txtclave.MaxLength = 50;
             this.txtclave.PasswordChar = '*';
-            this.txtclave.Size = new System.Drawing.Size(222, 22);
+            this.txtclave.Size = new System.Drawing.Size(275, 27);
             this.txtclave.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(364, 45);
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(416, 78);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 16);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Nro Documento";
+            this.label3.Text = "Nro. Documento";
             //
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(362, 134);
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(416, 158);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 16);
             this.label4.TabIndex = 6;
@@ -111,18 +118,19 @@
             // 
             // btningresar
             // 
-            this.btningresar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btningresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btningresar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btningresar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btningresar.FlatAppearance.BorderSize = 0;
             this.btningresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btningresar.ForeColor = System.Drawing.Color.White;
             this.btningresar.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
             this.btningresar.IconColor = System.Drawing.Color.White;
             this.btningresar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btningresar.IconSize = 21;
-            this.btningresar.Location = new System.Drawing.Point(356, 214);
+            this.btningresar.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.btningresar.Location = new System.Drawing.Point(420, 255);
             this.btningresar.Name = "btningresar";
-            this.btningresar.Size = new System.Drawing.Size(104, 40);
+            this.btningresar.Size = new System.Drawing.Size(130, 42);
             this.btningresar.TabIndex = 7;
             this.btningresar.Text = "Ingresar";
             this.btningresar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -132,18 +140,19 @@
             // 
             // btncancelar
             // 
-            this.btncancelar.BackColor = System.Drawing.Color.Firebrick;
+            this.btncancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btncancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btncancelar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btncancelar.FlatAppearance.BorderSize = 0;
             this.btncancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btncancelar.ForeColor = System.Drawing.Color.White;
             this.btncancelar.IconChar = FontAwesome.Sharp.IconChar.DoorClosed;
             this.btncancelar.IconColor = System.Drawing.Color.White;
             this.btncancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btncancelar.IconSize = 21;
-            this.btncancelar.Location = new System.Drawing.Point(515, 214);
+            this.btncancelar.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.btncancelar.Location = new System.Drawing.Point(565, 255);
             this.btncancelar.Name = "btncancelar";
-            this.btncancelar.Size = new System.Drawing.Size(109, 40);
+            this.btncancelar.Size = new System.Drawing.Size(130, 42);
             this.btncancelar.TabIndex = 8;
             this.btncancelar.Text = "Cancelar";
             this.btncancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -156,7 +165,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(694, 276);
+            this.ClientSize = new System.Drawing.Size(760, 390);
             this.Controls.Add(this.btncancelar);
             this.Controls.Add(this.btningresar);
             this.Controls.Add(this.label4);

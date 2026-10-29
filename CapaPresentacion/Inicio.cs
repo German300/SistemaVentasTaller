@@ -22,6 +22,52 @@ namespace CapaPresentacion
             else
                 usuarioActual = objusuario;
             InitializeComponent();
+            MostrarBienvenida();
+        }
+
+        private void MostrarBienvenida()
+        {
+            Panel bienvenida = new Panel
+            {
+                Dock = DockStyle.Fill,
+                BackColor = Color.FromArgb(245, 248, 251),
+                Padding = new Padding(55)
+            };
+
+            Label titulo = new Label
+            {
+                Dock = DockStyle.Top,
+                Height = 75,
+                Text = "Bienvenido al Sistema de Ventas",
+                TextAlign = ContentAlignment.MiddleCenter,
+                ForeColor = Color.FromArgb(31, 78, 121),
+                Font = new Font("Segoe UI", 24F, FontStyle.Bold)
+            };
+
+            Label descripcion = new Label
+            {
+                Dock = DockStyle.Top,
+                Height = 55,
+                Text = "Administra tus compras y ventas\n\nde forma rápida y sencilla.",
+                TextAlign = ContentAlignment.MiddleCenter,
+                ForeColor = Color.FromArgb(90, 90, 90),
+                Font = new Font("Segoe UI", 11F)
+            };
+
+            Label pie = new Label
+            {
+                Dock = DockStyle.Bottom,
+                Height = 35,
+                Text = "Administra tus compras y ventas de forma rápida y sencilla.",
+                TextAlign = ContentAlignment.MiddleCenter,
+                ForeColor = Color.Gray,
+                Font = new Font("Segoe UI", 9.5F, FontStyle.Italic)
+            };
+
+            bienvenida.Controls.Add(pie);
+            bienvenida.Controls.Add(descripcion);
+            bienvenida.Controls.Add(titulo);
+            contenedor.Controls.Add(bienvenida);
         }
 
         private void Inicio_Load(object sender, EventArgs e)
@@ -68,6 +114,7 @@ namespace CapaPresentacion
 
             contenedor.Controls.Add(formulario);
             formulario.Show();
+            formulario.BringToFront();
         }
 
         // ---- Un método por cada opción del menú ----

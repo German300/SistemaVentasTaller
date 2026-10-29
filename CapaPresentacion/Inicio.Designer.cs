@@ -58,7 +58,7 @@ namespace CapaPresentacion
             // 
             // menu
             // 
-            this.menu.BackColor = System.Drawing.Color.White;
+            this.menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(251)))));
             this.menu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuusuarios,
